@@ -109,6 +109,8 @@ const BuyTotalProduct = () => {
                 return;
             }
 
+
+            
             axios.post(`http://localhost:5000/processCheckoutUser`, formData)
                 .then((result) => {
                     console.log("Checkout successful:", result.data);
