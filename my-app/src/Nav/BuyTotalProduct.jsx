@@ -105,7 +105,7 @@ const BuyTotalProduct = () => {
             }
             if (formData.productIds.length === 0) {
                 alert("No products found to purchase. Please go back to your cart.");
-                navigate('/addtocart'); // Redirect to cart if no products
+                navigate('/addtocart'); 
                 return;
             }
 
@@ -113,7 +113,7 @@ const BuyTotalProduct = () => {
                 .then((result) => {
                     console.log("Checkout successful:", result.data);
                     alert("Order Placed Successfully!");
-                    navigate('/Buydetails'); // Navigate to order confirmation page
+                    navigate('/Buydetails'); 
                 })
                 .catch((error) => {
                     console.error("Error placing order:", error);
