@@ -1,0 +1,142 @@
+/* --- Color Palette (inspired by your user view, but with a different accent) --- */
+:root {
+  --primary-accent: #27ae60;  /* A professional green for the seller section */
+  --header-color: #2c3e50;    /* Dark, strong blue/grey for headers */
+  --text-color: #566573;      /* Softer grey for body text */
+  --bg-color: #ffffff;        /* Clean white background */
+  --hover-bg-color: #f9fafb;  /* Very subtle hover for rows */
+  --border-color: #eaeded;    /* Light border color */
+  --shadow-color: rgba(44, 62, 80, 0.1);
+}
+
+/* --- Main Container & Layout --- */
+.seller-layout-container {
+  display: flex; /* Key for placing sidebar next to content */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa; /* A slightly off-white background for the whole page */
+}
+
+/* --- Content Area --- */
+.seller-content-area {
+  flex-grow: 1; /* Takes up the remaining space */
+  padding: 40px;
+  background-color: var(--bg-color);
+  border-radius: 12px;
+  margin: 20px; /* Provides spacing around the main content box */
+  box-shadow: 0 8px 30px var(--shadow-color);
+  /* Entry Animation */
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+/* --- Animated Header --- */
+.seller-header {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--header-color);
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* The animated underline for the header */
+.seller-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px; /* Slightly longer underline */
+  height: 4px;
+  background-color: var(--primary-accent);
+  border-radius: 2px;
+  /* Animation: Slide in from the left */
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slideIn 0.7s 0.5s ease-out forwards;
+}
+
+/* --- Stylish & Responsive Table --- */
+.table-responsive {
+  overflow-x: auto; /* Ensures table is scrollable on small screens */
+}
+
+.seller-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  min-width: 900px; /* Prevents cramping on smaller viewports */
+}
+
+/* Table Header */
+.seller-table th {
+  background-color: transparent;
+  font-weight: 600;
+  color: #95a5a6; /* Muted color for header text */
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 18px 15px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Table Cells */
+.seller-table td {
+  padding: 18px 15px;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Table Body Rows - Animation & Hover Effect */
+.seller-table tbody tr {
+  /* Initial state for staggered animation */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rowFadeIn 0.5s ease-out forwards;
+  animation-delay: calc(var(--row-index) * 0.08s); /* Staggered delay */
+  
+  transition: all 0.25s ease-in-out;
+}
+
+/* Modern hover effect */
+.seller-table tbody tr:hover {
+  background-color: var(--hover-bg-color);
+  transform: translateY(-3px); /* Lifts the row slightly */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+}
+
+/* Remove bottom border from the last row */
+.seller-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Special Messages (No Data / Error) --- */
+.no-data-message, .error-message {
+  text-align: center;
+  color: #95a5a6;
+  padding: 40px;
+  font-style: italic;
+  font-size: 16px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+/* --- Keyframe Animations (Reused from your user view for consistency) --- */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes rowFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,202 @@
+/* General Styling */
+.services-page {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #f4f4f4;
+    padding: 100px 20px;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Our Services Section */
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-icon {
+    font-size: 2em;
+    margin-bottom: 20px;
+    /* In a real application, you would use an actual icon library like FontAwesome or SVGs */
+    background: #ddd;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.service-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* How It Works Section */
+.how-it-works {
+    background-color: #f9f9f9;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.step {
+    max-width: 300px;
+}
+
+.step-number {
+    font-size: 2em;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.step h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Why Choose Us Section */
+.benefits-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.benefit {
+    max-width: 300px;
+}
+
+.benefit h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #f4f4f4;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.testimonial {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    font-style: italic;
+}
+
+.testimonial h4 {
+    margin-top: 15px;
+    font-style: normal;
+}
+
+/* CTA Section */
+.cta-section {
+     background: linear-gradient(to right,rgb(114, 172, 199),rgb(226, 234, 247));
+    color: #fff;
+}
+
+.cta-section h2 {
+    color: #fff;
+}
+
+.cta-button {
+    background-color: #fff;
+    color: #007bff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* FAQ Section */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+.faq-item h3 {
+    font-size: 1.2em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2em;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .services-container,
+    .steps-container,
+    .benefits-container,
+    .testimonial-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

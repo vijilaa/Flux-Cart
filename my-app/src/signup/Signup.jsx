@@ -3,6 +3,8 @@ import "./Signup.css";
 import { FaRegUserCircle, FaPhoneSquareAlt, FaLock } from 'react-icons/fa';
 import { MdOutlineMail } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -93,137 +95,123 @@ function Signup() {
     setError(formError);
     return isValid;
   };
-const use= useNavigate()
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
-
     e.preventDefault();
-    if (validateForm()) {
-      localStorage.setItem("name", formData.name);
-      localStorage.setItem("email", formData.email);
-      localStorage.setItem("number", formData.number);
-      localStorage.setItem("password", formData.password);
-      localStorage.setItem("repeatpassword", formData.repeatpassword);
-      alert("Data saved successfully!");
-      use('/log')
-      setFormData({
-        name: "",
-        email: "",
-        number:"",
-        password: "",
-        repeatpassword: "",
-      })
-      setError({
-        name: "",
-        email: "",
-        number:"",
-        password: "",
-        repeatPassword: "",
-      })
-    } else {
-      alert("Form contains errors. Please fix them before submitting.");
 
-    }     
+      if (!validateForm()) {
+    return;
+  }
+    axios.post("http://localhost:5000/userregister", formData)
+      .then((result) => {
+
+        console.log(result);
+        alert("Success");
+        navigate("/log")
+      })
+      .catch((error) => {
+        console.log(error);
+         alert("Something went wrong. Please try again.");
+      });
+
   }
 
-  // console.log("Form Submitted", formData);
 
 
+  return (
+    <div className="user-signup-page">
+      <div className="user-signup-bg-img">
+        <div className="user-signup-box">
+          <div className='user-signup-blur-bg'></div>
+          <h4 className="user-signup-h4 mt-3">SIGNUP</h4>
 
+          <form onSubmit={handleSubmit} className="user-signup-form mt-4 mb-5">
+            <div className="user-signup-logo-and-input">
+              <div className="user-signup-icons"><FaRegUserCircle /></div>
+              <input
+                placeholder="Enter your name"
+                className="user-signup-input"
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            {error.name && <div className="error-msg">{error.name}</div>}
 
-return (
-  <div className="user-signup-page">
-    <div className="user-signup-bg-img">
-      <div className="user-signup-box">
-      <div className='user-signup-blur-bg'></div>
-        <h4 className="user-signup-h4 mt-3">SIGNUP</h4>
+            <div className="user-signup-logo-and-input">
+              <div className="user-signup-icons"><MdOutlineMail /></div>
+              <input
+                placeholder="Enter your email"
+                className="user-signup-input"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            {error.email && <div className="error-msg">{error.email}</div>}
 
-        <form onSubmit={handleSubmit} className="user-signup-form mt-4 mb-5">
-          <div className="user-signup-logo-and-input">
-            <div className="user-signup-icons"><FaRegUserCircle /></div>
-            <input
-              placeholder="Enter your name"
-              className="user-signup-input"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-          {error.name && <div className="error-msg">{error.name}</div>}
+            <div className="user-signup-logo-and-input">
+              <div className="user-signup-icons"><FaPhoneSquareAlt /></div>
+              <input
+                placeholder="Enter your number"
+                className="user-signup-input"
+                type="tel"
+                name="number"
+                value={formData.number}
+                onChange={handleChange}
+              />
+            </div>
+            {error.number && <div className="error-msg">{error.number}</div>}
 
-          <div className="user-signup-logo-and-input">
-            <div className="user-signup-icons"><MdOutlineMail /></div>
-            <input
-              placeholder="Enter your email"
-              className="user-signup-input"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          {error.email && <div className="error-msg">{error.email}</div>}
+            <div className="user-signup-logo-and-input">
+              <div className="user-signup-icons"><FaLock /></div>
+              <input
+                placeholder="Enter a new password"
+                className="user-signup-input"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
+            {error.password && <div className="error-msg">{error.password}</div>}
 
-          <div className="user-signup-logo-and-input">
-            <div className="user-signup-icons"><FaPhoneSquareAlt /></div>
-            <input
-              placeholder="Enter your number"
-              className="user-signup-input"
-              type="tel"
-              name="number"
-              value={formData.number}
-              onChange={handleChange}
-            />
-          </div>
-          {error.number && <div className="error-msg">{error.number}</div>}
+            <div className="user-signup-logo-and-input">
+              <div className="user-signup-icons"><FaLock /></div>
+              <input
+                placeholder="Repeat password"
+                className="user-signup-input"
+                type="password"
+                name="repeatpassword"
+                value={formData.repeatpassword}
+                onChange={handleChange}
+              />
+            </div>
+            {error.repeatpassword && <div className="error-msg">{error.repeatpassword}</div>}
 
-          <div className="user-signup-logo-and-input">
-            <div className="user-signup-icons"><FaLock /></div>
-            <input
-              placeholder="Enter a new password"
-              className="user-signup-input"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </div>
-          {error.password && <div className="error-msg">{error.password}</div>}
+            <div className="checkbox-div">
+              <input type="checkbox" id="agreeTerms" required />
+              <label className="signup-agree" htmlFor="agreeTerms">
+                I agree to the{' '}
+                <Link to="" className="signup-link-a">Terms of Condition</Link>
+              </label>
+            </div>
 
-          <div className="user-signup-logo-and-input">
-            <div className="user-signup-icons"><FaLock /></div>
-            <input
-              placeholder="Repeat password"
-              className="user-signup-input"
-              type="password"
-              name="repeatpassword"
-              value={formData.repeatpassword}
-              onChange={handleChange}
-            />
-          </div>
-          {error.repeatpassword && <div className="error-msg">{error.repeatpassword}</div>}
-
-          <div className="checkbox-div">
-            <input type="checkbox" id="agreeTerms" required />
-            <label className="signup-agree" htmlFor="agreeTerms">
-              I agree to the{' '}
-              <Link to="" className="signup-link-a">Terms of Condition</Link>
-            </label>
-          </div>
-
-          <button className="user-signupBtn" type="submit" >
-            SIGN UP
-            <span className="arrow">
-              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="rgb(183, 128, 255)">
-                <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
-              </svg>
-            </span>
-          </button>
-        </form>
+            <button className="user-signupBtn" type="submit" >
+              SIGN UP
+              <span className="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="rgb(183, 128, 255)">
+                  <path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z" />
+                </svg>
+              </span>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Signup;

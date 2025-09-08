@@ -1,0 +1,59 @@
+/* This is the main container for the dashboard layout */
+.seller-dashboard-container {
+  display: flex; /* This is key to making the sidebar and content align */
+  min-height: calc(100vh - 60px); /* Adjust based on your Navbar's height */
+  background-color: #f5f7fa;
+}
+
+/* Styles for the main content area */
+.dashboard-content {
+  flex-grow: 1; /* Allows this element to take up the remaining space */
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This will center the content horizontally */
+  justify-content: flex-start; /* Aligns content to the top */
+  overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+.dashboard-content h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #1e272e;
+}
+
+/* Card Grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%; /* Ensure cards take up the full width of the content area */
+  max-width: 1200px; /* Optional: Set a max-width for very large screens */
+}
+
+/* Individual Card */
+.card {
+  background-color: #ffffff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 18px;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e90ff;
+}

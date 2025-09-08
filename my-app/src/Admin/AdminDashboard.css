@@ -1,0 +1,85 @@
+/* Main container for the dashboard content */
+.dashboard-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+/* Main header style */
+.dashboard-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Subheader style */
+.dashboard-subheader {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* Grid layout for the cards */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
+}
+
+/* Individual card styling */
+.dashboard-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon container styling */
+.card-icon {
+  font-size: 24px;
+  padding: 15px;
+  margin-right: 20px;
+  border-radius: 50%; /* Makes the icon background circular */
+  color: #fff;
+}
+
+/* Card info (title and value) */
+.card-info {
+  text-align: left;
+}
+
+.card-title {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.card-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 5px 0 0 0;
+}
+
+/* Custom colors for each card's icon */
+.card-icon.products {
+  background-color: #007bff; /* Blue */
+}
+.card-icon.users {
+  background-color: #ffc107; /* Yellow */
+}
+.card-icon.sellers {
+  background-color: #28a745; /* Green */
+}
+.card-icon.orders {
+  background-color: #dc3545; /* Red */
+}

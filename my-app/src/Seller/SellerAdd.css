@@ -1,0 +1,162 @@
+/* --- Color Palette --- */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #f4f7f9;
+  --card-background-color: #ffffff;
+  --text-color: #34495e;
+  --border-color: #dfe6e9;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* --- New Dashboard Layout --- */
+/* This is the key to placing the sidebar and content side-by-side */
+.seller-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Assuming SellerSidebar has a fixed width, e.g., 250px */
+/* You would define this in the SellerSidebar's own CSS file */
+/* .seller-sidebar { width: 250px; } */
+
+
+/* --- Main Content Area --- */
+.seller-add-product-container {
+  flex-grow: 1; /* Allows this container to take up the remaining width */
+  padding: 40px;
+  display: flex;
+  justify-content: center; /* Centers the form card horizontally */
+  align-items: flex-start; /* Aligns the form card to the top */
+  overflow-y: auto; /* Allows content to scroll if it overflows */
+  height: 100vh;
+}
+
+/* --- Form Container --- */
+.add-product {
+  width: 100%;
+  max-width: 700px; /* Set a max-width for the form card for better readability */
+  padding: 40px;
+  background-color: var(--card-background-color);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px var(--shadow-color);
+  box-sizing: border-box;
+  
+}
+
+.add-product h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* --- Form Elements --- */
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-form label {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.add-product-form input,
+.add-product-form textarea {
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-product-form input:focus,
+.add-product-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.add-product-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* --- Main Action Button --- */
+.add-product-form button {
+  margin-top: 30px;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-product-form button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* --- Image Upload & Preview --- */
+.image-upload-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.image-upload-group img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px dashed var(--border-color);
+  border-radius: 50%;
+  background-color: #fafafa;
+}
+
+.custom-file-input {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-input:hover {
+  background-color: #27ae60;
+}
+
+/* Hide the default file input */
+#file-upload {
+  display: none;
+}
+
+/* --- Responsive Design --- */
+@media screen and (max-width: 900px) {
+  .seller-dashboard-layout {
+    flex-direction: column; /* Stacks sidebar and content vertically on smaller screens */
+  }
+
+  /* Ensure sidebar takes full width on mobile */
+  /* This assumes your sidebar component will adapt */
+  /* e.g., .seller-sidebar { width: 100%; height: auto; } */
+  
+  .seller-add-product-container {
+    padding: 20px; /* Reduce padding on smaller screens */
+  }
+}

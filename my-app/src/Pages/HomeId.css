@@ -1,0 +1,166 @@
+/* General container for the product details page */
+.product-card-size-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  overflow: hidden; /* Prevents scrollbars during animation */
+}
+
+/* Wrapper for the product image */
+.product-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px; /* For 3D effect on hover */
+  animation: slideInFromRight 1s ease-in-out;
+}
+
+/* The actual product image */
+.product-image-view {
+  max-width: 80%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+}
+
+.product-image-view:hover {
+  transform: translateZ(20px) scale(1.05); /* Slight 3D lift and zoom on hover */
+}
+
+/* Container for the product information */
+.product-info {
+  flex: 1;
+  padding: 0 40px;
+  animation: slideInFromLeft 1s ease-in-out;
+}
+
+/* Product title */
+.product-title-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Product description */
+.product-description {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Product price */
+.product-price-tag-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Product category */
+.product-category-badge-cat {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Container for the action buttons */
+.product-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Shared button styles */
+.btn-add-to-cart,
+.btn-buy-now {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 'Add to Cart' button specific styles */
+.btn-add-to-cart {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-add-to-cart:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* 'Buy Now' button specific styles */
+.btn-buy-now {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-buy-now:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Keyframe animations for slide-in effect */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .product-card-size-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .product-image-wrapper {
+    order: 1; /* Image appears first on small screens */
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .product-info {
+    order: 2; /* Product info appears after the image */
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .product-title-name {
+    font-size: 2rem;
+  }
+
+  .product-buttons {
+    justify-content: center;
+  }
+}

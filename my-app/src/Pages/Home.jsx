@@ -1,105 +1,79 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Home.css";
+import "./Home.css"; // Make sure you have styles for the sold-out overlay
 
-// Category to image mapping
-const categoryImages = {
-  "men's clothing": "https://tse4.mm.bing.net/th?id=OIP.NVwvQr0NaKhY2CVnqvEFZgHaE8&pid=Api&P=0&h=180",
-  "women's clothing": "https://tse4.mm.bing.net/th?id=OIP.M8zOmLVOnBUUnAlvwd624AHaE8&pid=Api&P=0&h=180",
-  "jewelery": "https://images.pexels.com/photos/13918657/pexels-photo-13918657.jpeg?auto=compress&cs=tinysrgb&w=300",
-  "electronics": "https://media.istockphoto.com/id/918381560/photo/eletronic-department-store-with-bokeh-blurred-background.jpg?b=1&s=612x612&w=0&k=20&c=tWPGxzh6vBPIZICNqZmqE8fT-ioecJEJfh9nz1omibA=",
-};
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products")
+    // Fetch all products when the component loads
+    axios.get("http://localhost:5000/allproduct")
       .then(res => {
-        setProducts(res.data);
-        const uniqueCategories = [...new Set(res.data.map(p => p.category))];
-        setCategories(uniqueCategories);
+        if (Array.isArray(res.data.data)) {
+          setProducts(res.data.data);
+        }
       })
-      .catch(err => console.error("API Error", err));
-  }, []);
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []); // The empty dependency array means this runs once on component mount
 
+
+  
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-light text-center py-5">
+    <div className="home-page">
+   
+      <section className="product-gallery py-5">
         <div className="container">
-          <h1 className="display-5 fw-bold">Discover the Latest Trends</h1>
-          <p className="lead">Shop the best products at unbeatable prices.</p>
-          <button className="btn btn-lg mt-3">Shop Now</button>
-        </div>
-      </section>
-
-      {/* Dynamic Categories */}
-      <section className="py-5">
-        <div className="container">
-          <h2 className="text-center mb-4">Shop by Category</h2>
-          <div className="row text-center">
-            {categories.map((category, i) => (
-              <div className="col-md-4 mb-4" key={i}>
-                <div
-                  className="card p-3 shadow-sm"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => navigate(`/category/${encodeURIComponent(category)}`)}
-                >
-                  <img
-                    src={categoryImages[category] || "https://via.placeholder.com/300x150.png?text=Category"}
-                    className="card-img-top"
-                    alt={`Category: ${category}`}
-                    style={{ height: "150px", objectFit: "cover" }}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title text-capitalize">{category}</h5>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Products */}
-      <section className="py-5 bg-light">
-        <div className="container">
-          <h2 className="text-center mb-4">Popular Products</h2>
+          <h2 className="section-header text-center mb-5">Discover Our Collection</h2>
           <div className="row">
-            {products.slice(0, 8).map((product) => (
-              <div className="col-md-3 mb-4" key={product.id}>
-                <div className="card h-100 shadow-sm">
-                  <img
-                    src={product.image}
-                    className="card-img-top"
-                    alt={product.title}
-                    style={{ height: "200px", objectFit: "contain" }}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.title}</h5>
-                    <p className="card-text">${product.price}</p>
-                    <div className="mb-2">
-                      {[...Array(5)].map((_, i) => (
-                        <FontAwesomeIcon
-                          icon={faStar}
-                          className={i < Math.round(product.rating.rate) ? "text-warning" : "text-muted"}
-                          key={i}
-                        />
-                      ))}
-                      <small className="ms-2 text-muted">({product.rating.count})</small>
+            {products.map((product) => (
+              <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={product._id}>
+                
+                {/* --- Conditional Rendering Logic --- */}
+                {/* If stock is 0, show the "Sold Out" version */}
+                {product.stock === 0 ? (
+                  <div className="product-card-wrapper is-sold">
+                    <div className="product-img-container">
+                      <img
+                        src={`http://localhost:5000/upload/${product.image?.filename}`}
+                        className="product-image"
+                        alt={product.name}
+                      />
+                      {/* This overlay is shown when stock is 0 */}
+                      <div className="sold-out-overlay">
+                        <span>Sold Out</span>
+                      </div>
                     </div>
-                    <button className="btn btn-outline-warning w-100">
-                      Add to Cart
-                    </button>
+                    <div className="product-info-container">
+                      <h5 className="product-title">{product.name}</h5>
+                      <p className="product-price">${product.price}</p>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  // Otherwise, show the regular, clickable product card
+                  <Link to={`/ViewbyId/${product._id}`} className="product-link">
+                    <div className="product-card-wrapper">
+                      <div className="product-img-container">
+                        <img
+                          src={`http://localhost:5000/upload/${product.image?.filename}`}
+                          className="product-image"
+                          alt={product.name}
+                        />
+                      </div>
+                      <div className="product-info-container">
+                        <h5 className="product-title">{product.name}</h5>
+                        <p className="product-price">${product.price}</p>
+                        <div className="view-details-btn">
+                          <span>View Details</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                )}
               </div>
             ))}
           </div>

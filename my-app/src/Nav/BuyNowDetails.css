@@ -1,0 +1,131 @@
+/* BuyNowDetails.css */
+.buy-now-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top */
+    min-height: calc(100vh - 60px); /* Adjust for header/footer if any */
+    background-color: #f0f2f5;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.purchase-history-card { /* Main container for all purchases */
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px; /* Wider card for history */
+    text-align: center;
+}
+
+.history-title {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.history-subtitle {
+    color: #555;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Styles for individual purchase items */
+.purchase-item-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.purchase-item-header {
+    color: #007bff;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.purchase-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.detail-group h4 {
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #e0e0e0;
+    padding-bottom: 5px;
+}
+
+.detail-group p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.detail-group ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+    color: #666;
+}
+
+.detail-group li {
+    margin-bottom: 3px;
+}
+
+/* General button style for links */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* For the "Go to Home" / "Start Shopping" buttons */
+    margin-top: 20px; /* Adjust spacing for buttons */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Specific styling for error messages/cards */
+.error-card {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.error-card h2 {
+    color: #721c24;
+}
+
+.back-to-shop {
+    margin-top: 30px;
+    font-size: 1.1em;
+}
+
+.back-to-shop a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.back-to-shop a:hover {
+    text-decoration: underline;
+}

@@ -1,221 +1,356 @@
-.logo {
-    display: flex;
+/* Ensure no default browser margins/padding on the body */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5; /* Light grey background for overall page */
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
 }
 
+/* Wrapper to ensure the navbar spans end-to-end without any gaps */
+.navbar-wrapper {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  position: relative; /* Needed for any absolute positioning inside if desired */
+  
+}
+
+/* Custom Navbar Styling */
+.custom-navbar {
+  background-color: #ffffff !important; /* White background for navbar */
+  padding: 15px 20px; /* More vertical padding */
+  border-radius: 0; /* No rounded corners for full edge-to-edge look */
+  margin-bottom: 0;
+}
+
+/* Brand/Logo Styling */
+.navbar-brand {
+  font-size: 1.8rem; /* Larger brand name */
+  font-weight: 700; /* Bolder */
+  color: #333333 !important; /* Darker text */
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-brand:hover {
+  color: #007bff !important; /* Blue on hover */
+}
+
+.span-mini {
+  color: #007bff; /* Vibrant blue */
+}
+
+.span-zoo {
+  color: #28a745; /* Fresh green */
+}
+
+/* Navbar Toggler (Hamburger Icon) */
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.75rem;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Custom color for icon */
+}
+
+/* Navigation Items (Links) */
+.navbar-nav .nav-item {
+  margin: 0 15px; /* Spacing between items */
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .nav-btn { /* Apply styles to both Link and button-as-link */
+  color: #555555 !important; /* Muted dark grey */
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 8px 0; /* Vertical padding for links */
+  position: relative;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  background: none; /* For button-as-link */
+  border: none; /* For button-as-link */
+  cursor: pointer;
+  text-decoration: none; /* Ensure no underline by default */
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-btn:hover {
+  color: #007bff !important; /* Highlight on hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Underline animation for nav links/buttons */
+.navbar-nav .nav-link::after,
+.navbar-nav .nav-btn::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 3px; /* Thicker underline */
+  background-color: #007bff;
+  left: 0;
+  bottom: -5px; /* Position below text */
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-btn:hover::after {
+  width: 100%; /* Expands on hover */
+}
+
+/* Custom Logout Button (only visible if logged in) */
+.custom-btn {
+  background-color: #dc3545; /* Red for logout */
+  border-color: #dc3545;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px; /* Pill shape */
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+  background-color: #c82333; /* Darker red on hover */
+  border-color: #bd2130;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
+/* User Icon Styling (Now triggers modal) */
 .user-icon {
-    width: 20px;
-    height: 20px;
-    color: black;
-} 
-
-.about{
-  text-decoration: none;
-}
-.navbar-brand{
-  font-weight: bold;
-font-style: italic;
+  font-size: 1.6rem;
+  color: #6c757d;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  cursor: pointer;
+  margin-left: 15px; /* Add some space if needed */
 }
 
-  .navbar{
-    height: 10vh;
-  }
-  
-
-
-  .navbar-nav {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex: 5;
-  }
-  
-  .navbar-nav .nav-item {
-    margin: 0 10px;
-  }
-  
-  .user-icon {
-    font-size: 20px;
-    color: #333;
-  }
-  
-
-  .navbar-collapse > .navbar-nav {
-    justify-content: center;
-  } 
-  
-  .navbar-collapse > div {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-  }
-/* Center modal vertically and horizontally */
-.modal-dialog {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; /* Full height of viewport */
+.user-icon:hover {
+  color: #007bff;
+  transform: scale(1.1);
 }
 
+/* --- Modal Styling for User Type Selection --- */
 .modal-content {
-  margin: auto;
+  border-radius: 12px; /* More rounded corners for modal */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Deeper shadow */
+  animation: modalFadeIn 0.4s ease-out forwards; /* Custom fade-in animation */
+  overflow: hidden; /* Ensures content stays within rounded borders */
 }
-.logo {
-  width: 150px;
-  height: 60px;
-  object-fit: cover;
+
+.modal-header {
+  border-bottom: 1px solid #eee; /* Subtle bottom border */
+  padding: 20px 25px;
+  background-color: #f8f9fa; /* Light background for header */
+}
+
+.modal-title {
+  font-weight: 700;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.btn-close {
+  font-size: 1.2rem;
+  color: #666;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-close:hover {
+  color: #dc3545; /* Red on hover */
+  transform: rotate(90deg); /* Small rotation on close button hover */
+}
+
+.modal-body.user-role-selection-modal {
+  display: flex;
+  flex-direction: row; /* Keep them in a row */
+  gap: 25px; /* More space between options */
+  padding: 30px;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.role-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fcfcfc; /* Very light background for each option */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  flex: 1; /* Distribute space */
+  min-width: 140px; /* Ensure a minimum width */
+  max-width: 180px; /* Maximum width for a card */
+  cursor: pointer;
+}
+
+.role-option:hover {
+  transform: translateY(-8px); /* More pronounced lift effect */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  background-color: #e6f7ff; /* Light blue tint on hover */
+  border-color: #a0dfff; /* Lighter blue border on hover */
+}
+
+.role-icon {
+  width: 90px; /* Slightly larger icons */
+  height: 90px;
   border-radius: 50%;
-  margin-top: 18px;
-
-  
+  object-fit: cover;
+  border: 3px solid #ddd; /* Thicker border */
+  margin-bottom: 15px;
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
-.user-icon {
-    width: 20px;
-    height: 20px;
-    color: black;
-} 
-
-.about{
-  text-decoration: none;
-}
-.navbar-brand{
-  font-weight: bold;
-  margin-left: -40px; 
-  /* z-index: 1;           */
-  /* background: white;   */
-  padding-left: 5px;
-
+.role-option:hover .role-icon {
+  transform: scale(1.05) rotate(3deg); /* Subtle zoom and rotation */
+  border-color: #007bff; /* Blue border on icon hover */
 }
 
-  .navbar{
-    height: 8vh;
-  }
-  
+.role-button-link {
+  text-decoration: none; /* Remove underline from Link component */
+  width: 100%; /* Make link span full width of its parent */
+  text-align: center;
+}
 
-
-  .navbar-nav {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex: 5;
-  }
-  
-  .navbar-nav .nav-item {
-    margin: 0 10px;
-  }
-  
-  .user-icon {
-    font-size: 20px;
-    color: #333;
-  }
-  
-
-  .navbar-collapse > .navbar-nav {
-    justify-content: center;
-  } 
-  
-  .navbar-collapse > div {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .logo-name-div{
-    display: flex;
-    align-items: center; /* Vertically center items */
-     gap: 0;
-     position: relative;
-  }
-
-  .span-mini{
-    color: rgb(26, 107, 194);
-  }
-  .span-zoo{
-    color: rgba(0, 0, 0, 0.722);
-  }
-
-/* Button spacing and sizing */
-
-.modal-body 
-.btn-admin,.btn-seller,.btn-user {
-  min-width: 120px;
-  padding: 0.4rem 1rem;
+.role-button {
+  width: 90%; /* Button takes most of the option's width */
+  padding: 10px 15px;
+  border-radius: 25px; /* Pill shape */
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 12px;
   transition: all 0.3s ease-in-out;
+  margin-top: auto; /* Push button to bottom if content varies */
+}
+
+/* Specific button colors */
+.admin-btn {
+  background-color: #6f42c1; /* Purple */
+  border-color: #6f42c1;
+  color: white;
+}
+.admin-btn:hover {
+  background-color: #5a359c;
+  border-color: #5a359c;
+}
+
+.seller-btn {
+  background-color: #fd7e14; /* Orange */
+  border-color: #fd7e14;
+  color: white;
+}
+.seller-btn:hover {
+  background-color: #df6c0c;
+  border-color: #df6c0c;
+}
+
+.user-btn {
+  background-color: #007bff; /* Blue */
+  border-color: #007bff;
+  color: white;
+}
+.user-btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+
+/* --- Keyframe Animations --- */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive Adjustments */
+@media (min-width: 992px) {
+  .navbar-nav.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .custom-navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-nav {
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 5px 0;
+  }
+
+  .navbar-nav .nav-link,
+  .navbar-nav .nav-btn {
+    padding: 10px 0;
+  }
+
+  .d-flex.align-items-center {
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
+    align-items: center !important;
+  }
+
+  .custom-btn { /* Logout button for logged in state */
+    width: 80%;
+    max-width: 250px;
+    margin-bottom: 15px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .user-icon { /* User icon for not logged in state */
+    margin-left: 0 !important;
+  }
+
+  /* Modal responsiveness for smaller screens */
+  .modal-body.user-role-selection-modal {
+    flex-direction: column; /* Stack options vertically on small screens */
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .role-option {
+    min-width: unset; /* Remove min-width to allow more flexibility */
+    width: 100%; /* Make them span full width */
+    max-width: 300px; /* Optional: limit max width if desired */
+  }
+}
+.home-nav-item {
+  position: relative;
+}
+
+.login-modal {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 250px;
+  text-align: center;
 }
 
-/* Button hover effect */
-.modal-body 
-
-.btn-admin:hover,
-.btn-seller:hover,
-.btn-user:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+.login-modal p {
+  margin-bottom: 15px;
 }
 
-.admin-button-overall-div,
-.seller-button-overall-div,
-.user-button-overall-div{
-   border: 2px solid rgba(0, 0, 0, 0.611);
-  padding: 10px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), inset 0 0 5px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-.admin-button-logo-img{
-  margin-bottom: 2px;
-}
-
-.admin-button-overall-div:hover,
-.seller-button-overall-div:hover,
-.user-button-overall-div:hover {
-  transform: translateY(-5px) rotateX(5deg);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25), inset 0 0 8px rgba(0, 0, 0, 0.08);
-}
-
-
-/* Admin Button */
-.btn-admin {
-  /* background-color: #dc3545; */
-  background:linear-gradient(to right, #53BAED, #FCFFFD);
-  color: black;
-  border:1px solid gray;
-}
-
-.btn-admin:hover {
-  background-color: #bb2d3b;
-}
-
-/* Seller Button */
-.btn-seller {
-  background:linear-gradient(180deg,#FCFFFD, #53BAED );
-  color: black;
-  border: 1px solid gray;
-}
-
-.btn-seller:hover {
-  background-color: #e0a800;
-}
-
-/* User Button */
-.btn-user {
-  background:linear-gradient(90deg, #53BAED,#FCFFFD,#53BAED);
-  color: black;
-  border: 1px solid gray;
-}
-
-.btn-user:hover {
-  background-color: #084298;
-}
-
-/* Close button styling */
-.btn-close {
-  filter: brightness(0.5);
+.login-modal-buttons {
+  display: flex;
+  justify-content: space-around;
 }

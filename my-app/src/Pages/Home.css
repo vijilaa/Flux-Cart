@@ -1,90 +1,183 @@
-/* General Resets */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  /* Hero Section */
-  section.bg-light {
-    /* background: linear-gradient(to right, #fffbe6, #ffffff); */
-     background-repeat: no-repeat;
-background-image: url(../assets/Images/bgimg.jpg);
-  }
-  
-  section.bg-light h1 {
-    color: #333;
-  }
-  
-  section.bg-light p {
-    color: #666;
-  }
-  
-  /* Featured Categories */
-  .card img {
-    object-fit: cover;
-    height: 200px;
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  
-  /* Product Card Styling */
-  .card .btn-outline-warning {
-    border-radius: 25px;
-  }
-  
-  .card .card-text {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #444;
-  }
-  
-  .card .text-warning {
-    margin-right: 3px;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #222;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-  }
-  
-  footer p {
-    margin: 0;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 767px) {
-    .card img {
-      height: 180px;
-    }
-  
-    .card-title {
-      font-size: 1rem;
-    }
-  }
-.category-card {
-  border: none;
-  transition: transform 0.2s ease;
+/* --- General Page & Font Setup --- */
+.home-page {
+  background-color: #f4f7f6; /* A soft, off-white background */
+  font-family: 'Inter', sans-serif; /* A clean, modern font */
+}
+
+/* --- Section Header Styling --- */
+.section-header {
+  font-weight: 700;
+  color: #2a2a2a;
+  letter-spacing: 0.5px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px; /* Added padding to make space for the underline */
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+
+.section-header:hover::after {
+  width: 100%;
+}
+
+/* --- Product Card Styling --- */
+.product-link {
+  text-decoration: none;
+}
+
+.product-card-wrapper {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* A bouncy transition */
+  animation: floatUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* Staggered animation for the cards */
+.col-lg-3:nth-child(1) .product-card-wrapper { animation-delay: 0.1s; }
+.col-lg-3:nth-child(2) .product-card-wrapper { animation-delay: 0.2s; }
+.col-lg-3:nth-child(3) .product-card-wrapper { animation-delay: 0.3s; }
+.col-lg-3:nth-child(4) .product-card-wrapper { animation-delay: 0.4s; }
+/* Add more if needed */
+
+.product-card-wrapper:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: #4facfe;
+}
+
+.product-img-container {
+  position: relative; /* CRITICAL: Added for the overlay to position correctly */
   padding: 20px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.product-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease, filter 0.4s ease; /* Added filter transition */
 }
 
-.category-image {
-  height: 180px;
-  border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 15px;
+.product-card-wrapper:hover .product-image {
+  transform: scale(1.08);
 }
 
-.btn-lg{
-    background: linear-gradient(to right,rgb(114, 172, 199),rgb(226, 234, 247));
- 
+.product-info-container {
+  padding: 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Ensures long titles don't break the layout */
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.view-details-btn {
+  background: #333;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.product-card-wrapper:hover .view-details-btn {
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* --- Keyframe Animation --- */
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 
+  ========================================
+  --- ADDED STYLES FOR "SOLD OUT" ITEMS ---
+  ========================================
+*/
+
+/* Styles for the card wrapper when an item is sold */
+.product-card-wrapper.is-sold {
+  cursor: not-allowed;
+}
+
+/* Disable the cool hover effects on sold items */
+.product-card-wrapper.is-sold:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #e0e0e0;
+}
+
+/* Make the image of a sold item look disabled */
+.product-card-wrapper.is-sold .product-image {
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+/* The "Sold Out" overlay text container */
+.sold-out-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 30, 30, 0.7); /* Darker, stylish overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.4s ease;
+}
+
+/* Show the overlay when the 'is-sold' class is present */
+.product-card-wrapper.is-sold .sold-out-overlay {
+  opacity: 1;
+}
+
+.sold-out-overlay span {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 2px solid #ffffff;
+  padding: 8px 16px;
+  border-radius: 5px;
 }

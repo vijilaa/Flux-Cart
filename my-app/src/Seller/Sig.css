@@ -1,88 +1,137 @@
-.signup-page {
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f9;
+}
+
+.sig-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding-right: 15%;
-  background-repeat: no-repeat;
-  background-size: cover ;
-   background-image: url(../assets/Images/bgimg.jpg);
+  min-height: 100vh;
+  padding: 50px 20px;
 }
 
-.signup-container {
-  /* background: white; */
+.sig-card {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  background: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.sig-left {
+  flex: 1;
+  background: #f0f4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.sig-left img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
+}
+
+.sig-right {
+  flex: 1.3;
   padding: 50px;
-  border-radius: 12px;
-  width: 400px;
-  margin-top: 75px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: #ffffff;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.signup-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+.sig-form h2 {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
   color: #333;
 }
 
-.signup-form {
+.form-grid {
+  display: flex;
+  gap: 30px;
+}
+
+.form-col {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
-.signup-field {
+.form-field {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  background: #f9f9f9;
   padding: 10px;
-  background: #fafafa;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-.signup-icon {
-  margin-right: 10px;
-  color: #666;
-}
-
-.signup-input {
+.form-field input,
+.form-field select {
   border: none;
   outline: none;
-  width: 100%;
-  font-size: 14px;
   background: transparent;
+  margin-left: 10px;
+  flex: 1;
+  font-size: 1rem;
 }
 
-.signup-error {
+.form-field svg {
+  color: #555;
+}
+
+.error-text {
   color: red;
-  font-size: 12px;
+  font-size: 0.85rem;
   margin-top: -10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
-.signup-agreement {
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  margin: 15px 0;
+.form-agreement {
+  margin-top: 20px;
+  font-size: 0.9rem;
 }
 
-.signup-agreement a {
-  color: #6c63ff;
-  text-decoration: none;
-  margin-left: 5px;
-}
-
-.signup-button {
-  background: #6c63ff;
-  color: white;
+.submit-btn {
+  width: 100%;
+  margin-top: 20px;
   padding: 12px;
+  background: #007bff;
+  color: white;
+  font-size: 1rem;
   border: none;
   border-radius: 6px;
-  font-size: 16px;
   cursor: pointer;
 }
 
-.signup-button:hover {
-  background: #5a52d4;
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 960px) {
+  .sig-card {
+    flex-direction: column;
+  }
+  .sig-left {
+    padding: 30px;
+  }
+  .sig-right {
+    padding: 30px;
+  }
+  .form-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

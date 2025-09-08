@@ -1,0 +1,195 @@
+/* --- General Page Styling --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.buy-now-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  box-sizing: border-box;
+}
+
+/* --- Checkout Card --- */
+.checkout-card {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  /* Animation for the card appearing */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: floatUp 0.6s ease-out forwards;
+}
+
+/* --- Card Header --- */
+.checkout-header {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(to right, rgb(114, 172, 199), rgb(226, 234, 247));
+  color: white;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header-subtitle {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* --- Checkout Form --- */
+.checkout-form {
+  padding: 2rem;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem; /* Creates space between side-by-side inputs */
+}
+
+/* Handle flexible width for items in a row */
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.form-input::placeholder {
+  color: #aaa;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6a82fb;
+  box-shadow: 0 0 0 3px rgba(106, 130, 251, 0.2);
+  background-color: #fff;
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, rgb(114, 172, 199), rgb(226, 234, 247));
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:active {
+  transform: translateY(-1px);
+}
+
+/* --- Back to Shop Link --- */
+.back-to-shop {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+}
+
+.back-to-shop a {
+  color: #777;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.back-to-shop a:hover {
+  color: #fc5c7d;
+}
+
+/* --- Animation --- */
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+  .buy-now-container {
+    padding: 1rem;
+  }
+
+  .checkout-card {
+    border-radius: 15px;
+  }
+  
+  .checkout-header, .checkout-form {
+    padding: 1.5rem;
+  }
+
+  .header-title {
+    font-size: 1.5rem;
+  }
+
+  .form-row {
+    flex-direction: column; /* Stack inputs on small screens */
+    gap: 0; /* Remove gap when stacked */
+  }
+}
+.error-text {
+  color: #e74c3c; /* A clear, readable red */
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 6px;
+  margin-bottom: 0;
+  text-align: left;
+}

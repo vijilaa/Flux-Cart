@@ -3,6 +3,7 @@ import "./Login.css"
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 
 
@@ -47,25 +48,35 @@ function Login() {
   function handleLoginSubmit(event) {
     event.preventDefault();
 
-    if (validateLogin()) {
-      const storedEmail = localStorage.getItem("email");
-      const storedPassword = localStorage.getItem("password");
-
-      if (
-        loginData.email === storedEmail &&
-        loginData.password === storedPassword
-      ) {
-        alert("Login successful!");
-        navigate("/home")
-        localStorage.setItem("login", "true");
-        window.dispatchEvent(new Event("loginStatusChanged"));
-
-
-
-      } else {
-        alert("Invalid email or password.");
-      }
+    if (!validateLogin()) {
+      return;
     }
+    axios.post('http://localhost:5000/one', { email: loginData.email })
+      .then((result) => {
+        const user = result.data.data;
+
+console.log(user);
+
+
+        if (!user) {
+          alert("User not found. Please sign up first.");
+          return;
+        }
+        if (user.password === loginData.password) {
+          console.log(user);
+          localStorage.setItem('UserId',user._id)
+          
+          alert("Login successful!");
+          navigate("/home")
+        }
+        else {
+          alert("Invalid email or password.");
+        }
+      })
+      .catch ((error) => {
+          console.log(error);
+
+        });
   }
   return (
     <div>
@@ -96,7 +107,7 @@ function Login() {
                 <div className='user-login-input'>
                   <input placeholder="Password"
                     className="form-control user-input"
-                    type="password"
+                    type="text"
                     name="password"
                     value={loginData.password}
                     onChange={handleChange}

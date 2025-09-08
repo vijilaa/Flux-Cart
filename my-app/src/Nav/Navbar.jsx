@@ -14,7 +14,7 @@ function Navbar() {
     setIsLoggedIn(storedLogin === 'true');
   }, []);
 
-  
+
   const handleLogout = () => {
     localStorage.setItem('isLoggedIn', 'false');
     setIsLoggedIn(false);
@@ -25,10 +25,10 @@ function Navbar() {
     <div className="change">
       <nav className="navbar navbar-expand-sm full_nav">
         <div className="container">
-     <Link to="/" className="navbar-brand text-white mb-0" style={{ fontSize: "1.5rem" }}>
-                <span className='span-mini'>MINI</span>
-                <span className='span-zoo'>ZOO</span>
-              </Link>
+          <Link to="/" className="navbar-brand text-white mb-0" style={{ fontSize: "1.5rem" }}>
+            <span className='span-mini'>MINI</span>
+            <span className='span-zoo'>ZOO</span>
+          </Link>
 
           <button
             className="navbar-toggler"
@@ -42,41 +42,34 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                 <button
-    className="nav-link text-dark btn btn-link"
-    style={{ textDecoration: 'none' }}
-    onClick={() => {
-      if (isLoggedIn) {
-        navigate('/home');
-      } else {
-        navigate('/login');
-      }
-    }}
-  >
-    Home
-  </button>
+                <button
+                  className="nav-link text-dark btn btn-link"
+                  
+                >
+                  Home
+                </button>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-dark" to="/aboutus">About</Link>
+                <Link className="nav-link text-dark" to="/User-about">About</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-dark" to="/Service">Services</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link text-dark" to="/">Contact</Link>
+                <Link className="nav-link text-dark" to="/phone-contact">Contact</Link>
               </li>
             </ul>
-             <div className="d-flex align-items-center ms-4">
-            <button className="btn rounded-pill me-3">
-              <FontAwesomeIcon icon={faHeart} className="me-2" />
-              
-            </button>
-            <button className="btn rounded-pill">
-              <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
-              
-            </button>
-          </div>
-           
+            <div className="d-flex align-items-center ms-4">
+              <button className="btn rounded-pill me-3">
+                <FontAwesomeIcon icon={faHeart} className="me-2" />
+
+              </button>
+              <button className="btn rounded-pill" onClick={() => navigate("/vieworder")}>
+                <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
+
+              </button>
+            </div>
+
           </div>
         </div>
       </nav>

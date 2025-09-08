@@ -1,0 +1,141 @@
+/* Container for the admin product view page */
+.admin-product-view-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  height: 100vh;
+  width: 85%;
+  position: absolute;
+  right: 0px;
+  top: 58px;
+  overflow: auto;
+}
+
+/* Header styling */
+.admin-product-header {
+  color: #343a40; /* Dark grey text */
+  font-weight: 600;
+  border-bottom: 2px solid #007bff; /* Blue accent line */
+  padding-bottom: 10px;
+}
+
+/* Table styling */
+.admin-product-table {
+  background-color: #ffffff; /* White background for the table */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the border-radius is applied to corners */
+}
+
+/* Table header styling */
+.admin-product-table thead.thead-dark th {
+  background-color: #343a40; /* Dark background for the header */
+  color: #ffffff;
+  border-color: #454d55;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Table cell styling */
+.admin-product-table td,
+.admin-product-table th {
+  vertical-align: middle; /* Center content vertically */
+  text-align: center;
+}
+
+/* Product image in the table */
+.admin-product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #dee2e6; /* Light border around the image */
+}
+
+/* Specific styling for the product name cell */
+.product-name-cell {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* Custom styling for Bootstrap badges to make them more prominent */
+.badge-success {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5em 0.75em;
+  font-size: 0.85rem;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.5em 0.75em;
+  font-size: 0.85rem;
+}/* Container for the admin product view page */
+.admin-product-view-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa; /* Light grey background for the page */
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header styling */
+.admin-product-header {
+  color: #343a40; /* Dark grey text */
+  font-weight: 600;
+  border-bottom: 2px solid #007bff; /* Blue accent line */
+  padding-bottom: 10px;
+}
+
+/* Table styling */
+.admin-product-table {
+  background-color: #ffffff; /* White background for the table */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the border-radius is applied to corners */
+}
+
+/* Table header styling */
+.admin-product-table thead.thead-dark th {
+  background-color: #343a40; /* Dark background for the header */
+  color: #ffffff;
+  border-color: #454d55;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Table cell styling */
+.admin-product-table td,
+.admin-product-table th {
+  vertical-align: middle; /* Center content vertically */
+  text-align: center;
+}
+
+/* Product image in the table */
+.admin-product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #dee2e6; /* Light border around the image */
+}
+
+/* Specific styling for the product name cell */
+.product-name-cell {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* Custom styling for Bootstrap badges to make them more prominent */
+.badge-success {
+  background-color: #28a745;
+  color: white;
+  padding: 0.5em 0.75em;
+  font-size: 0.85rem;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.5em 0.75em;
+  font-size: 0.85rem;
+}

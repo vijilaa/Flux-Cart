@@ -1,0 +1,33 @@
+.full_nav {
+  background-color: #f8f9fa; /* A light grey background */
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff !important; /* A bootstrap primary color on hover */
+}
+
+/* Styling for the mobile menu toggle button */
+.navbar-toggler {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Center the nav links when the screen is larger */
+@media (min-width: 576px) {
+  .navbar-nav {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+    justify-content: center;
+  }
+}

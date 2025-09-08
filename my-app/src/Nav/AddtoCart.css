@@ -1,0 +1,168 @@
+/* Import a Google Font for a clean, modern typeface (Optional) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+/* 
+  This is the main card style. 
+  The 'margin' property is key here, as it creates space between items 
+  without needing a flex or grid container.
+*/
+.orderr-card-size- {
+  font-family: 'Nunito Sans', sans-serif;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  margin: 1.5rem auto; /* Creates vertical space between cards and centers them */
+  max-width: 750px; /* Adjust this to control the width of your cards */
+  width: 90%; /* Responsive width */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Entrance animation */
+  animation: slideInFromLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* A more prominent shadow on hover */
+.orderr-card-size-:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Image section */
+.orderr-image-wrapper {
+  flex-shrink: 0;
+  width: 220px;
+  background-color: #f8f8f8; /* A light background for the image */
+}
+
+.orderr-image-view {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.orderr-card-size-:hover .orderr-image-view {
+  transform: scale(1.08); /* A nice zoom effect on hover */
+}
+
+/* Information section */
+.orderr-info {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.orderr-title-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 0.5rem 0;
+}
+
+.orderr-description {
+  font-size: 0.95rem;
+  color: #4a5568;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Pushes content below it down */
+}
+.orderr-description strong {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.orderr-price-tag-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #3182ce; /* A nice, friendly blue */
+  margin-bottom: 0.25rem;
+}
+
+.orderr-category-badge-cat {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-bottom: 1.5rem;
+}
+.orderr-category-badge-cat strong {
+  font-weight: 600;
+}
+
+/* Buttons section */
+.orderr-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Aligns buttons to the bottom of the card */
+}
+
+/* Universal button styles */
+.btn-add-to-cart-order,
+.btn-buy-now {
+  padding: 10px 20px;
+  border: 2px solid;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Remove button */
+.btn-add-to-cart-order {
+  background-color: transparent;
+  border-color: #cbd5e0;
+  color: #4a5568;
+}
+
+.btn-add-to-cart-order:hover {
+  background-color: #e53e3e;
+  border-color: #e53e3e;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Buy Now button */
+.btn-buy-now {
+  background-color: #3182ce;
+  border-color: #3182ce;
+  color: #fff;
+}
+
+.btn-buy-now:hover {
+  background-color: #2b6cb0;
+  border-color: #2b6cb0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 650px) {
+  .orderr-card-size- {
+    flex-direction: column;
+    width: 95%;
+    margin: 1rem auto;
+  }
+
+  .orderr-image-wrapper {
+    width: 100%;
+    height: 250px; /* Give a fixed height on mobile */
+  }
+
+  .orderr-info {
+    padding: 1rem 1.5rem;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Log.css';
+import axios from 'axios'
 
 function Log() {
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -29,29 +30,41 @@ function Log() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    if (validateLogin()) {
-      const storedEmail = localStorage.getItem('email');
-      const storedPassword = localStorage.getItem('password');
+const handleLoginSubmit = (e) => {
+  e.preventDefault();
+  if (!validateLogin()) return;
 
-      if (loginData.email === storedEmail && loginData.password === storedPassword) {
-        alert('Login successful!');
-        localStorage.setItem('login', 'true');
-        window.dispatchEvent(new Event('loginStatusChanged'));
-        navigate('/home');
-      } else {
-        alert('Invalid email or password.');
+  axios.post('http://localhost:5000/foneseller', loginData)
+    .then((result) => {
+      const seller = result.data.data;
+console.log(seller);
+
+      if (!seller) {
+        alert("User not found. Please sign up first.");
+        return;
       }
-    }
-  };
+
+      if (loginData.password==seller.password) {
+        console.log(seller);
+        localStorage.setItem('SellerId',seller._id)
+        alert("Login successful!");
+        navigate("/side");
+      } else {
+        alert("Invalid email or password.");
+      }
+    })
+    .catch((error) => {
+      console.error("Login error:", error);
+      alert("An error occurred during login. Please try again.");
+    });
+};
 
   return (
     <div className="login-wrapper">
       <div className="login-box">
         <div className="login-form-section">
           <h2 className="form-title">Login</h2>
-          <form onSubmit={handleLoginSubmit} className="login-form">
+          <form className="login-form">
             <div className="form-group">
               <label>Email</label>
               <input
@@ -66,7 +79,7 @@ function Log() {
             <div className="form-group">
               <label>Password</label>
               <input
-                type="password"
+                type="text"
                 name="password"
                 value={loginData.password}
                 onChange={handleChange}
@@ -81,7 +94,9 @@ function Log() {
               </label>
               <Link to="/For" className="link-forgot">Forgot password?</Link>
             </div>
-            <button type="submit" className="form-button">Login</button>
+          
+            <button type="submit" className="form-button" onClick={handleLoginSubmit}>Login</button>
+       
             <p className="register-link">
               Don't have an account? <Link to="/Sig">Register here</Link>
             </p>

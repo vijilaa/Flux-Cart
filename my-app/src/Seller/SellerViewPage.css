@@ -1,0 +1,220 @@
+/* --- General Page & Font Setup --- */
+.seller-dashboard-layout {
+    display: flex;
+    background-color: #f4f7f6; /* A soft, off-white background */
+    font-family: 'Inter', sans-serif; /* A clean, modern font */
+    height: 100vh;
+}
+
+.seller-content-container {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* --- Section Header Styling --- */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2a2a2a;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 15px;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+}
+
+.page-title:hover::after {
+    width: 100%;
+}
+
+.no-products-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 4rem;
+}
+
+/* --- Product Card Grid --- */
+.card-grid {
+    display: grid;
+    /* Creates responsive columns that are at least 280px wide */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* --- Product Card Styling --- */
+.product-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* Bouncy transition from your example */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Initial state for animation */
+    opacity: 0;
+    transform: translateY(50px);
+    /* Animation definition */
+    animation: floatUp 0.6s ease-out forwards;
+}
+
+/* Staggered animation delay for cards */
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+.product-card:nth-child(4) { animation-delay: 0.4s; }
+.product-card:nth-child(5) { animation-delay: 0.5s; }
+.product-card:nth-child(6) { animation-delay: 0.6s; }
+/* Add more if you expect more cards to load at once */
+
+
+.product-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: #4facfe;
+}
+
+.product-image {
+    width: 100%;
+    height: 180px; /* Smaller height for a more compact card */
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.08);
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin: 1rem 1rem 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0 1rem 1rem;
+    flex-grow: 1; /* Allows this element to take up available space */
+}
+
+.product-card p {
+    margin: 0.25rem 1rem;
+    font-size: 1rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.product-card p strong {
+    color: #333;
+}
+
+/* --- Action Buttons --- */
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    margin-top: auto; /* Pushes buttons to the bottom of the card */
+}
+
+.btn-edit, .btn-delete, .btn-save, .btn-cancel {
+    background: #333;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 18px; /* Slightly smaller padding for a compact look */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none; /* For the Link component */
+}
+
+.product-card:hover .btn-edit {
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.product-card:hover .btn-delete {
+    background: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
+}
+
+/* --- Editing State Styling --- */
+.product-card.editing {
+    padding: 1.5rem;
+    border: 2px solid #4facfe;
+    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
+    transform: translateY(-5px); /* Lift it up slightly to show it's active */
+}
+
+.product-card.editing .product-image {
+    height: 150px; /* Make image smaller in edit mode to save space */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.product-card.editing input,
+.product-card.editing textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card.editing input:focus,
+.product-card.editing textarea:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.25);
+}
+
+.btn-save {
+    background-color: #2ecc71;
+}
+
+.btn-cancel {
+    background-color: #95a5a6;
+}
+
+.btn-save:hover {
+    background-color: #27ae60;
+}
+
+.btn-cancel:hover {
+    background-color: #7f8c8d;
+}
+
+
+/* --- Keyframe Animation --- */
+@keyframes floatUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

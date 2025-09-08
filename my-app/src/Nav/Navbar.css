@@ -1,6 +1,7 @@
 .full_nav{
-    background-color: white !important;
-   
+    /* background-color: white !important;
+    */
+      background: linear-gradient(to right,rgb(114, 172, 199),rgb(226, 234, 247));
 }
 .logo_image{
     width: 100px;

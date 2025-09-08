@@ -67,7 +67,7 @@ const Forgot = () => {
 
   return (
     <div>
-      <div className="container-fluid">
+      <div className="container-fluid forgot-page">
 
         <form onSubmit={handleSubmit}>
 

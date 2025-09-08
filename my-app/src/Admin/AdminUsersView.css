@@ -1,0 +1,150 @@
+/* --- Color and Font Variables (Easy to customize!) --- */
+:root {
+  --primary-color: #007bff;
+  --header-color: #343a40;
+  --text-color: #495057;
+  --bg-color: #ffffff;
+  --hover-bg-color: #f8f9fa;
+  --border-color: #dee2e6;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* --- Main Container & Entry Animation --- */
+.user-container {
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px var(--shadow-color);
+  /* Animation: Fade in and slide up */
+  animation: fadeInUp 0.6s ease-out forwards;
+  display: flex;
+
+}
+
+/* --- Animated Header --- */
+.user-header {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--header-color);
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* The animated underline */
+.user-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  /* Animation: Slide in from the left */
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: slideIn 0.7s 0.5s ease-out forwards;
+}
+
+/* --- Stylish Table --- */
+.user-table {
+  width: 100vw;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+/* Table Header */
+.user-table th {
+  background-color: transparent;
+  font-weight: 600;
+  color: #8898aa;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Table Rows & Cells */
+.user-table td {
+  padding: 15px;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Table Body Rows - Animation & Hover Effect */
+.user-table tbody tr {
+  /* Initial state for animation */
+  opacity: 0;
+  transform: translateY(10px);
+  /* Apply the animation with a delay calculated using a CSS variable */
+  animation: rowFadeIn 0.5s ease-out forwards;
+  animation-delay: calc(var(--row-index) * 0.07s); /* Staggered delay */
+  
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.user-table tbody tr:hover {
+  background-color: var(--hover-bg-color);
+  transform: scale(1.02); /* Lifts the row slightly */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border-radius: 8px; /* Apply radius on hover */
+}
+
+/* Remove bottom border for the last row */
+.user-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Special Messages --- */
+.no-data-message, .error-message {
+  text-align: center;
+  color: #888;
+  padding: 30px;
+  font-style: italic;
+}
+
+.error-message {
+  color: #e63946;
+  font-weight: 500;
+}
+
+
+/* --- Keyframe Animations --- */
+
+/* For the main container */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* For the header underline */
+@keyframes slideIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* For each table row */
+@keyframes rowFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
