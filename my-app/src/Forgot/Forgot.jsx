@@ -1,8 +1,7 @@
-
-
-import React, { useState, useEffect, } from 'react';
+import React, { useState } from 'react';
 import "./Forgot.css";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Forgot = () => {
   const [formData, setFormData] = useState({
@@ -12,16 +11,7 @@ const Forgot = () => {
   });
 
   const [formError, setFormError] = useState({});
-  const [oldPassword, setOldPassword] = useState('');
- const navigate = useNavigate();
-
-  // Load the existing password from localStorage when the component mounts
-  useEffect(() => {
-    const savedPassword = localStorage.getItem('password');
-    if (savedPassword) {
-      setOldPassword(savedPassword);
-    }
-  }, []);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,6 +21,11 @@ const Forgot = () => {
     e.preventDefault();
     const errors = {};
     let isValid = true;
+
+    if (!formData.email) { // Add validation for email
+      errors.email = "Email is required";
+      isValid = false;
+    }
 
     if (!formData.password) {
       errors.password = "Password is required";
@@ -51,16 +46,24 @@ const Forgot = () => {
     setFormError(errors);
 
     if (isValid) {
-      // Replace old password with the new confirmed password
-      localStorage.setItem('password', formData.repeatpassword);
-
-      alert("Password has been updated successfully!");
-      navigate("/log")
-      // Clear the form
-      setFormData({
-        email: '',
-        password: '',
-        repeatpassword: ''
+      // Send formData in the axios.post request
+      axios.post("http://localhost:5000/forgot", {
+        email: formData.email,
+        password: formData.password
+      })
+      .then((result) => {
+        alert("Password has been updated successfully!");
+        navigate("/log");
+        // Clear the form
+        setFormData({
+          email: '',
+          password: '',
+          repeatpassword: ''
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Failed to update password. Please try again."); // Provide user feedback
       });
     }
   };
@@ -68,9 +71,7 @@ const Forgot = () => {
   return (
     <div>
       <div className="container-fluid forgot-page">
-
         <form onSubmit={handleSubmit}>
-
           <div className="user-form">
             <h1 className='Text-input'>Forgot!</h1>
             <input
@@ -81,6 +82,7 @@ const Forgot = () => {
               value={formData.email}
               onChange={handleChange}
             />
+            {formError.email && <p className="error">{formError.email}</p>} {/* Display email error */}
             <input
               type="password"
               className="form-control input-line mt-3"

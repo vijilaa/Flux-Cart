@@ -38,7 +38,6 @@ const AdminSellersView = () => {
       <AdminSidebar />
       <main className="seller-content-area">
         <h1 className="seller-header">All Seller Details</h1>
-
         {error ? (
           <div className="error-message">{error}</div>
         ) : (
@@ -46,6 +45,7 @@ const AdminSellersView = () => {
             <table className="seller-table">
               <thead>
                 <tr>
+                  <th>Image</th> {/* This header is for the seller's image */}
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone Number</th>
@@ -59,6 +59,15 @@ const AdminSellersView = () => {
                 {sellers.length > 0 ? (
                   sellers.map((seller, index) => (
                     <tr key={seller._id} style={{ '--row-index': index }}>
+                     <td>
+                      <img
+                        src={`http://localhost:5000/upload/${seller.image.filename}`}
+                        alt={seller.name}
+                        className="user-profile-image" // Add a class for styling
+                      />
+
+</td>
+
                       <td>{seller.name || 'N/A'}</td>
                       <td>{seller.email || 'N/A'}</td>
                       <td>{seller.number || 'N/A'}</td>
@@ -70,7 +79,7 @@ const AdminSellersView = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="7" className="no-data-message">No sellers found.</td>
+                    <td colSpan="8" className="no-data-message">No sellers found.</td> {/* Corrected colspan */}
                   </tr>
                 )}
               </tbody>

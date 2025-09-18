@@ -1,150 +1,227 @@
-/* --- Color and Font Variables (Easy to customize!) --- */
-:root {
-  --primary-color: #007bff;
-  --header-color: #343a40;
-  --text-color: #495057;
-  --bg-color: #ffffff;
-  --hover-bg-color: #f8f9fa;
-  --border-color: #dee2e6;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-/* --- Main Container & Entry Animation --- */
+/* Overall Layout */
 .user-container {
-
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-color);
-  border-radius: 12px;
-  box-shadow: 0 8px 25px var(--shadow-color);
-  /* Animation: Fade in and slide up */
-  animation: fadeInUp 0.6s ease-out forwards;
-  display: flex;
-
+    display: flex; /* Use flexbox for sidebar and main content */
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- Animated Header --- */
+/* Main Content Area */
+.user-container > div:last-child {
+    flex-grow: 1; /* Allows the content to take up the remaining space */
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin: 20px; /* Adjust margin as needed */
+    max-width: calc(100% - 260px); /* Account for sidebar width + margins */
+}
+
+
 .user-header {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--header-color);
-  margin-bottom: 25px;
-  position: relative;
-  padding-bottom: 10px;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
 }
 
-/* The animated underline */
-.user-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 4px;
-  background-color: var(--primary-color);
-  border-radius: 2px;
-  /* Animation: Slide in from the left */
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: slideIn 0.7s 0.5s ease-out forwards;
+/* Loading and Error Messages */
+.user-container p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 50px;
 }
 
-/* --- Stylish Table --- */
+.user-container .error-message {
+    color: #d9534f;
+    background-color: #fdf7f7;
+    border: 1px solid #d9534f;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+/* User Table */
 .user-table {
-  width: 100vw;
-  border-collapse: collapse;
-  font-size: 16px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners apply to children */
 }
 
-/* Table Header */
-.user-table th {
-  background-color: transparent;
-  font-weight: 600;
-  color: #8898aa;
-  text-transform: uppercase;
-  font-size: 12px;
-  padding: 15px;
-  text-align: left;
-  border-bottom: 2px solid var(--border-color);
-}
-
-/* Table Rows & Cells */
+.user-table th,
 .user-table td {
-  padding: 15px;
-  color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-/* Table Body Rows - Animation & Hover Effect */
-.user-table tbody tr {
-  /* Initial state for animation */
-  opacity: 0;
-  transform: translateY(10px);
-  /* Apply the animation with a delay calculated using a CSS variable */
-  animation: rowFadeIn 0.5s ease-out forwards;
-  animation-delay: calc(var(--row-index) * 0.07s); /* Staggered delay */
-  
-  transition: all 0.2s ease-in-out;
+.user-table thead th {
+    background-color: #a5bbd3; /* Primary color for header */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.95em;
 }
 
-/* Hover effect */
+.user-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for readability */
+}
+
 .user-table tbody tr:hover {
-  background-color: var(--hover-bg-color);
-  transform: scale(1.02); /* Lifts the row slightly */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  border-radius: 8px; /* Apply radius on hover */
+    background-color: #f0f8ff; /* Highlight row on hover */
+    cursor: pointer;
 }
 
-/* Remove bottom border for the last row */
-.user-table tbody tr:last-child td {
-  border-bottom: none;
+/* User Profile Image */
+.user-profile-image {
+    width: 50px; /* Fixed width for image */
+    height: 50px; /* Fixed height for image */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    border: 2px solid #e0e0e0;
+    vertical-align: middle; /* Align with text */
+    margin-right: 10px;
 }
 
-/* --- Special Messages --- */
-.no-data-message, .error-message {
-  text-align: center;
-  color: #888;
-  padding: 30px;
-  font-style: italic;
+/* No Data Message */
+.no-data-message {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    padding: 30px;
+    font-size: 1.1em;
 }
 
-.error-message {
-  color: #e63946;
-  font-weight: 500;
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .user-container > div:last-child {
+        margin: 15px;
+        padding: 25px;
+        max-width: calc(100% - 20px); /* Adjust max-width for smaller screens */
+    }
+
+    .user-header {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .user-table th,
+    .user-table td {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+
+    .user-profile-image {
+        width: 40px;
+        height: 40px;
+    }
 }
 
+@media (max-width: 768px) {
+    .user-container {
+        flex-direction: column; /* Stack sidebar and content vertically */
+    }
 
-/* --- Keyframe Animations --- */
+    .user-container > div:last-child {
+        margin: 10px;
+        padding: 20px;
+        max-width: unset; /* Remove max-width for full flexibility */
+    }
 
-/* For the main container */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    /* Hide some columns for better readability on small screens */
+    .user-table thead tr th:nth-child(4), /* Phone Number */
+    .user-table tbody tr td:nth-child(4),
+    .user-table thead tr th:nth-child(5), /* Password */
+    .user-table tbody tr td:nth-child(5) {
+        display: none;
+    }
+
+    .user-header {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .user-table {
+        display: block;
+        overflow-x: auto; /* Enable horizontal scrolling for tables */
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    .user-table thead, .user-table tbody, .user-table th, .user-table td, .user-table tr {
+        display: block;
+    }
+
+    .user-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .user-table tr {
+        border: 1px solid #e0e0e0;
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .user-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+        flex: 1 0 100%; /* Each cell takes full width */
+    }
+
+    .user-table td:before {
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .user-table td:nth-of-type(1):before { content: "Image"; }
+    .user-table td:nth-of-type(2):before { content: "Name"; }
+    .user-table td:nth-of-type(3):before { content: "Email"; }
+    /* You would add these if phone/password were not hidden */
+    /* .user-table td:nth-of-type(4):before { content: "Phone Number"; } */
+    /* .user-table td:nth-of-type(5):before { content: "Password"; } */
+
+    .user-profile-image {
+        margin: 0 auto; /* Center image when stacked */
+        display: block;
+    }
 }
 
-/* For the header underline */
-@keyframes slideIn {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
+@media (max-width: 480px) {
+    .user-header {
+        font-size: 1.5em;
+        padding-bottom: 10px;
+    }
 
-/* For each table row */
-@keyframes rowFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    .user-container > div:last-child {
+        padding: 15px;
+    }
+
+    .user-table th, .user-table td {
+        padding: 10px;
+    }
+
+    .user-table td:before {
+        width: 40%; /* Adjust label width for very small screens */
+    }
 }

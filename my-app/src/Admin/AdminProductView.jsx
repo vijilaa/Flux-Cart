@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./AdminProductView.css"; // We will create this CSS file next
+import AdminSidebar from "./AdminSidebar";
 
 const AdminProductView = () => {
   const [products, setProducts] = useState([]);
@@ -24,7 +25,8 @@ const AdminProductView = () => {
   }, []); // The empty dependency array means this runs once on component mount
 
   return (
-    <div className="admin-product-view-container">
+    <div className="seller-dashboard-layout">
+      <AdminSidebar/>
       <div className="container mt-4">
         <h2 className="text-center mb-4 admin-product-header">All Products</h2>
         

@@ -17,7 +17,7 @@ const Footer = () => {
                  
                     <div className="col-md-3 mb-4">
                         <a className="navbar-brand text-white" href="#" style={{ fontSize: '1.5rem' }}>
-                            MINI <span className="fw-bold">ZOO</span>
+                         FLUX <span className="fw-bold">CART</span>
                         </a>
                         <div className="d-flex justify-content-center justify-content-md-start gap-3 mt-3 footer-icon-row">
                             <a href="https://youtube.com" aria-label="YouTube" target="_blank" rel="noopener noreferrer">

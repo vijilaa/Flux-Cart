@@ -37,6 +37,7 @@ const AddProSchema = (req, res) => {
 
 const ViewProduct = (req, res) => {
     ProductSchema.find()
+
         .populate("SellerId")
         .then((result) => {
             res.json({

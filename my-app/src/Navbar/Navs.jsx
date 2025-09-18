@@ -46,8 +46,8 @@ function Navs() {
       <nav className="navbar navbar-expand-sm bg-white custom-navbar">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand">
-            <span className='span-mini'>MINI</span>
-            <span className='span-zoo'>ZOO</span>
+            <span className='span-mini'>FLUX</span>
+            <span className='span-zoo'>CART</span>
           </Link>
 
           <button

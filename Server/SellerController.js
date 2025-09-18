@@ -1,4 +1,17 @@
 const SellSchema = require('./SellerSchema')
+
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, res, cb) {
+        cb(null, "./Images")
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    },
+
+})
+const SellerImage = multer({ storage: storage }).single("image");
  
 const SellerRegisterSchema = (req,res)=>{
     const seller = new SellSchema({
@@ -9,7 +22,8 @@ const SellerRegisterSchema = (req,res)=>{
             dob:req.body.dob,
             shopName: req.body.shopName, 
             gstNumber: req.body.gstNumber, 
-            businessAddress: req.body.businessAddress 
+            businessAddress: req.body.businessAddress ,
+              image: req.file
     })
     seller.save()
     .then((result)=>{
@@ -97,7 +111,8 @@ const UpdateSeller =(req, res)=>{
             dob:req.body.dob,
             shopName: req.body.shopName, 
             gstNumber: req.body.gstNumber, 
-            businessAddress: req.body.businessAddress 
+            businessAddress: req.body.businessAddress ,
+             image: req.file
     };
    SellSchema.findByIdAndUpdate(SelleId,updateData,{new:true})
     .then((result)=>{
@@ -105,11 +120,12 @@ const UpdateSeller =(req, res)=>{
             data:result,
             msg:"sucessful"
         })
-        .catch((error)=>{
+        
+    })
+    .catch((error)=>{
             console.log(error);
             
         })
-    })
 }
 const deleteSeller = (req, res) => {
     const SelleId = req.params.id;
@@ -126,5 +142,43 @@ SellSchema.findByIdAndDelete(SelleId)
             console.log(error)
         })
 };
+const ForgotSeller =(req, res)=>{
+    const email=req.body.email;
+    const updateData={
+          
+        
+            password: req.body.password,
+       
+    };
+   SellSchema.findOneAndUpdate({ email: email },updateData,{new:true})
+    .then((result)=>{
+        res.json({
+            data:result,
+            msg:"sucessful"
+        })
+       
+    })
+     .catch((err)=>{
+            console.log(err);
+            
+        })
+}
 
-module.exports={SellerRegisterSchema,ViewSeller,SellerId,findOneSeller,UpdateSeller,deleteSeller}
+const updatesellerregistration = (req, res) => {
+    const Seller = req.params.id;
+    SellSchema.findByIdAndUpdate(Seller, { AdminStatus: true }, { new: true })
+        .then((result) => {
+            res.json({
+                data: result,
+                msg: "sucessful"
+            })
+
+        })
+        .catch((err) => {
+            console.log(err);
+
+        })
+
+}
+
+module.exports={SellerImage,SellerRegisterSchema,ViewSeller,SellerId,findOneSeller,UpdateSeller,deleteSeller,ForgotSeller,updatesellerregistration}

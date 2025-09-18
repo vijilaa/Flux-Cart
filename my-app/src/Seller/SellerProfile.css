@@ -1,0 +1,62 @@
+/* Background Styling */
+.seller-background {
+    background-image: url("https://wallpaperbat.com/img/46561-blue-and-white-ultra-hd-desktop-background-wallpaper-for-4k-uhd-tv.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Profile Card Styling */
+.profile-card {
+    background-color: rgba(240, 248, 255, 0.95); /* Slight transparency */
+    width: 700px;
+    max-width: 90%;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Profile Image Styling */
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1e90ff;
+}
+
+/* Details Styling */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Update Button Styling */
+.update-button {
+    background: linear-gradient(to right, rgb(114, 172, 199), rgb(70, 130, 180));
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+.update-button:hover {
+    background: linear-gradient(to right, rgb(95, 158, 160), rgb(65, 105, 225));
+}

@@ -1,3 +1,4 @@
+const { status } = require('init');
 const mongoose = require('mongoose');
 
 const BuyerSchema = new mongoose.Schema({
@@ -41,7 +42,8 @@ const BuyerSchema = new mongoose.Schema({
     productIds: [{ 
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product' 
-    }]
+    }],
+    status:{type:Boolean, default: false}
 });
 
 module.exports = mongoose.model('Buy', BuyerSchema);

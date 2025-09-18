@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const BuyNow = () => {
-   const navigate = useNavigate()
+    const navigate = useNavigate()
     const userId = localStorage.getItem('UserId');
     const location = useLocation(); // Get the location object
     const { id } = useParams()
@@ -37,7 +37,18 @@ const BuyNow = () => {
     // A single handler to update form data based on input name
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setFormData(prev => ({ ...prev,  [id]: id === 'quantity' ? parseInt(value, 10): value }));
+
+        if (id === 'fullName') {
+            // Allow only letters and spaces
+            const filteredValue = value.replace(/[^a-zA-Z\s]/g, '');
+            setFormData(prev => ({ ...prev, [id]: filteredValue }));
+        } else if (['quantity', 'zip', 'cardNumber', 'cvv'].includes(id)) {
+            // Allow only digits
+            const numericValue = value.replace(/\D/g, '');
+            setFormData(prev => ({ ...prev, [id]: numericValue }));
+        } else {
+            setFormData(prev => ({ ...prev, [id]: value }));
+        }
     };
 
     // Function to validate the form data
@@ -50,8 +61,8 @@ const BuyNow = () => {
         if (!formData.city) newErrors.city = 'City is required.';
 
         // Rule 2: Check for specific formats (simple examples)
-        if (!/^\d{5}$/.test(formData.zip)) {
-            newErrors.zip = 'ZIP Code must be 5 digits.';
+        if (!/^\d{6}$/.test(formData.zip)) {
+            newErrors.zip = 'ZIP Code must be 6 digits.';
         }
         if (!/^\d{16}$/.test(formData.cardNumber)) {
             newErrors.cardNumber = 'Card Number must be 16 digits.';
@@ -62,7 +73,7 @@ const BuyNow = () => {
         if (!/^\d{3}$/.test(formData.cvv)) {
             newErrors.cvv = 'CVV must be 3 digits.';
         }
-           if (!formData.quantity || formData.quantity <= 0) {
+        if (!formData.quantity || formData.quantity <= 0) {
             newErrors.quantity = 'Quantity must be at least 1.';
         }
         if (isNaN(formData.quantity)) {
@@ -74,8 +85,8 @@ const BuyNow = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
- axios.put(`http://localhost:5000/BuyStock/${id}`, {UserId: userId , count:formData.quantity},
-)
+        axios.put(`http://localhost:5000/BuyStock/${id}`, { UserId: userId, count: formData.quantity },
+        )
             .then((result) => {
                 console.log(result.data);
 
@@ -104,7 +115,7 @@ const BuyNow = () => {
                     console.log(error);
                 });
         }
-       
+
 
     };
 
@@ -171,7 +182,7 @@ const BuyNow = () => {
                             </div>
                         </div>
                     </div>
-                          <div className="form-section">
+                    <div className="form-section">
                         <h4 className="section-title">Order Details</h4>
                         <div className="form-group">
                             <label htmlFor="quantity">Quantity</label>

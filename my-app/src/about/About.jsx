@@ -14,7 +14,7 @@ const About = () => {
     <section className="about-us-section">
       <div className="con container">
         <div className="about-header">
-          <h1>About Mini ZOO</h1>
+          <h1>About Flux Cart</h1>
           <p>Your trusted partner in seamless online shopping.</p>
         </div>
 

@@ -12,7 +12,6 @@ const AddtoCart = () => {
   useEffect(() => {
     const userId = localStorage.getItem('UserId');
 
-    // It's good practice to handle the case where userId might not exist
     if (!userId) {
       setError("User not found. Please log in.");
       setLoading(false);
@@ -21,7 +20,6 @@ const AddtoCart = () => {
 
     axios.get("http://localhost:5000/viewallorder")
       .then(res => {
-        // Filter the orders for the current user
         const userOrders = res.data.data.filter(order => order.UserId === userId);
         setOrders(userOrders);
         setLoading(false);
@@ -31,68 +29,61 @@ const AddtoCart = () => {
         setError("There was an error fetching your cart items.");
         setLoading(false);
       });
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []);
 
   const handleDelete = async (orderId) => {
     try {
       if (window.confirm("Are you sure you want to delete this product?")) {
-        // Use the specific order ID for deletion
         await axios.delete(`http://localhost:5000/deleteorder/${orderId}`);
-        // Update the state by filtering out the deleted order by its unique _id
         setOrders(prevOrders => prevOrders.filter(order => order._id !== orderId));
       }
     } catch (error) {
       console.error("Error deleting product:", error);
-      // Optionally, provide user feedback on deletion failure
       alert("Failed to delete the item from your cart.");
     }
   }
 
   if (loading) {
-    return <div>Loading your cart...</div>;
+    return <div className="AddtoCart-loading">Loading your cart...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="AddtoCart-error">{error}</div>;
   }
-console.log(orders);
 
   return (
     <div>
-      {orders.length > 0 ? (
-        orders.map(order => (
-          // Use the unique order._id as the key for the list item
-          <div className="orderr-card-size-" key={order._id}>
-            <div className="orderr-image-wrapper">
-              {/* Defensive coding: check if ProductId and image exist before accessing filename */}
-              <img
-                src={`http://localhost:5000/upload/${order.ProductId?.image?.filename}`}
-                alt={order.ProductId?.name}
-                className="orderr-image-view"
-              />
-            </div>
-            <div className="orderr-info">
-              <h2 className="orderr-title-name">{order.ProductId?.name}</h2>
-              <p className="orderr-description">
-                <strong>Description:</strong> {order.ProductId?.description}
-              </p>
-              <div className="orderr-price-tag-name">${order.ProductId?.price}</div>
-              <div className="orderr-category-badge-cat">
-                <strong>Category:</strong> {order.ProductId?.category}
+      <div className="AddtoCart-container"> {/* Added a container for styling */}
+        {orders.length > 0 ? (
+          orders.map(order => (
+            <div className="orderr-card-size-" key={order._id}>
+              <div className="orderr-image-wrapper">
+                <img
+                  src={`http://localhost:5000/upload/${order.ProductId?.image?.filename}`}
+                  alt={order.ProductId?.name}
+                  className="orderr-image-view"
+                />
               </div>
-              <div className="orderr-buttons">
-                {/* Pass the unique order._id to the delete handler */}
-                <button className="btn-add-to-cart-order" onClick={() => handleDelete(order._id)}>Remove</button>
+              <div className="orderr-info">
+                <h2 className="orderr-title-name">{order.ProductId?.name}</h2>
+                <p className="orderr-description">
+                  <strong>Description:</strong> {order.ProductId?.description}
+                </p>
+                <div className="orderr-price-tag-name">${order.ProductId?.price}</div>
+                <div className="orderr-category-badge-cat">
+                  <strong>Category:</strong> {order.ProductId?.category}
+                </div>
+                <div className="orderr-buttons">
+                  <button className="btn-add-to-cart-order" onClick={() => handleDelete(order._id)}>Remove</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <div>Your cart is empty.</div>
-      )}
-
+          ))
+        ) : (
+          <div className="empty-cart-message">Your cart is empty.</div>
+        )}
+      </div>
       <CartFooter orders={orders}></CartFooter>
-
     </div>
   );
 };

@@ -35,7 +35,7 @@ const Home = () => {
                 
                 {/* --- Conditional Rendering Logic --- */}
                 {/* If stock is 0, show the "Sold Out" version */}
-                {product.stock === 0 ? (
+                {product.stock <= 0 ? (
                   <div className="product-card-wrapper is-sold">
                     <div className="product-img-container">
                       <img

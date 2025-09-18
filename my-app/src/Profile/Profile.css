@@ -30,3 +30,20 @@
    flex-direction: column;
    gap: 15px; 
 }
+/* ... existing styles ... */
+
+.update-button {
+   background: linear-gradient(to right, rgb(114, 172, 199), rgb(226, 234, 247));
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px; /* Add some space above the button */
+    transition: background-color 0.3s ease;
+}
+
+.update-button:hover {
+    background-color: #45a049;
+}

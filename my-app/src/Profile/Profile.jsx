@@ -1,33 +1,57 @@
 import React from 'react'
 import './Profile.css'
 import { useState, useEffect } from 'react'
-
+import axios from 'axios'
+import { useParams, useNavigate } from 'react-router-dom' // Import useNavigate
 
 const Profile = () => {
+    const [user, setUser] = useState(null);
+    const { id } = useParams();
+    const UserId = localStorage.getItem("UserId")
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    useEffect(() => {
+        if (UserId) {
+            axios.get(`http://localhost:5000/useone/${UserId}`)
+                .then((res) => {
+                    console.log(res.data.data);
+                    setUser(res.data.data);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+    }, [UserId]);
+
+    const handleUpdateProfile = () => {
 
 
-    const username = localStorage.getItem("name")
-    const email = localStorage.getItem("email")
-    const number = localStorage.getItem("number")
-
-    // useEffect(()=>{
-    //     window.location.reload()
-    // },[])
+        // You can navigate to an update page, e.g.:
+        navigate(`/edit-profile/${UserId}`);
+        // Or you could open a modal for editing
+        console.log("Update Profile button clicked!");
+    };
 
     return (
         <div>
             <div className='img-1'>
-
                 <div className="card-1">
-
                     <div className="img-2">
-                        <img className="img-2" src='https://img.freepik.com/free-vector/woman-profile-silhouette_23-2147502125.jpg?uid=R176304562&ga=GA1.1.1707953542.1732684197&semt=ais_hybrid&w=740' />
+                        <img className="img-2" src={`http://localhost:5000/upload/${user?.image?.filename}`} alt="Profile Silhouette" />
                     </div>
                     <div className="details">
-                        <h2>{username}</h2>
-                        <h5>{email}</h5>
-                        <h5>{number}</h5>
-                       
+                        {user ? (
+                            <>
+                                <p>Name: {user.name}</p>
+                                <p>Email: {user.email}</p>
+                                <p>Number: {user.number}</p>
+                                <button className="update-button" onClick={handleUpdateProfile}>
+                                    Update Profile
+                                </button>
+                            </>
+                        ) : (
+                            <p>Loading user details...</p>
+                        )}
                     </div>
                 </div>
             </div>

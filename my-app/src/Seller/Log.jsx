@@ -30,34 +30,40 @@ function Log() {
     return Object.keys(newErrors).length === 0;
   };
 
-const handleLoginSubmit = (e) => {
-  e.preventDefault();
-  if (!validateLogin()) return;
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (!validateLogin()) return;
 
-  axios.post('http://localhost:5000/foneseller', loginData)
-    .then((result) => {
-      const seller = result.data.data;
-console.log(seller);
+   axios.post('http://localhost:5000/foneseller', loginData)
+  .then((result) => {
+    const seller = result.data.data;
+    
+    if (!seller) {
+      alert("User not found. Please sign up first.");
+      return;
+    }
 
-      if (!seller) {
-        alert("User not found. Please sign up first.");
-        return;
-      }
+    if (loginData.password !== seller.password) {
+      alert("Invalid email or password.");
+      return;
+    }
 
-      if (loginData.password==seller.password) {
-        console.log(seller);
-        localStorage.setItem('SellerId',seller._id)
-        alert("Login successful!");
-        navigate("/side");
-      } else {
-        alert("Invalid email or password.");
-      }
-    })
-    .catch((error) => {
-      console.error("Login error:", error);
-      alert("An error occurred during login. Please try again.");
-    });
-};
+    if (!seller.AdminStatus) {
+      alert("Your registration is pending approval by the admin.");
+      return;
+    }
+
+
+    localStorage.setItem('SellerId', seller._id);
+    alert("Login successful!");
+    navigate("/dashboard");
+  })
+  .catch((error) => {
+    console.error("Login error:", error);
+    alert("An error occurred during login. Please try again.");
+  });
+
+  };
 
   return (
     <div className="login-wrapper">
@@ -94,23 +100,23 @@ console.log(seller);
               </label>
               <Link to="/For" className="link-forgot">Forgot password?</Link>
             </div>
-          
+
             <button type="submit" className="form-button" onClick={handleLoginSubmit}>Login</button>
-       
+
             <p className="register-link">
               Don't have an account? <Link to="/Sig">Register here</Link>
             </p>
           </form>
         </div>
         <div className="login-info-section">
-  <div className="info-content">
-   
-    {/* <div className="info-overlay">
+          <div className="info-content">
+
+            {/* <div className="info-overlay">
       <h3>Welcome Back to MiniZoo!</h3>
       <p>Access your personalized dashboard and manage your account with ease</p>
     </div> */}
-  </div>
-</div>
+          </div>
+        </div>
 
       </div>
     </div>

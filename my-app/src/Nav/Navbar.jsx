@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Navbar.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faHeart, faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'; // Ensure faUserCircle is imported
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedLogin = localStorage.getItem('isLoggedin');
-    setIsLoggedIn(storedLogin === 'true');
-  }, []);
-
-
   const handleLogout = () => {
-    localStorage.setItem('isLoggedIn', 'false');
-    setIsLoggedIn(false);
-    navigate('/login');
+    localStorage.removeItem("UserId");
+    navigate('/');
   };
 
   return (
@@ -26,8 +18,8 @@ function Navbar() {
       <nav className="navbar navbar-expand-sm full_nav">
         <div className="container">
           <Link to="/" className="navbar-brand text-white mb-0" style={{ fontSize: "1.5rem" }}>
-            <span className='span-mini'>MINI</span>
-            <span className='span-zoo'>ZOO</span>
+            <span className='span-mini'>FLUX</span>
+            <span className='span-zoo'>CART</span>
           </Link>
 
           <button
@@ -42,12 +34,7 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <button
-                  className="nav-link text-dark btn btn-link"
-                  
-                >
-                  Home
-                </button>
+                <Link to='/home' className="nav-link text-dark">Home</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link text-dark" to="/User-about">About</Link>
@@ -58,18 +45,31 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link text-dark" to="/phone-contact">Contact</Link>
               </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link text-dark" to="/Buydetails">Orders</Link>
+                </li>
+
             </ul>
             <div className="d-flex align-items-center ms-4">
-              <button className="btn rounded-pill me-3">
-                <FontAwesomeIcon icon={faHeart} className="me-2" />
-
+              <Link to={`/profile`}>
+              <button className="btn rounded-pill me-3 icon-btn"> {/* Added a common class for icon buttons */}
+                <FontAwesomeIcon icon={faUserCircle} size="lg" /> {/* Changed to faUserCircle */}
               </button>
-              <button className="btn rounded-pill" onClick={() => navigate("/vieworder")}>
-                <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
-
+              </Link>
+              <button className="btn rounded-pill icon-btn" onClick={() => navigate("/vieworder")}> {/* Added common class */}
+                <FontAwesomeIcon icon={faShoppingCart} size="lg" />
               </button>
+
+
+                <button
+                  className="btn rounded-pill ms-3 logout-btn"
+                  onClick={handleLogout}
+                >
+                  <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /> Logout
+                </button>
+
             </div>
-
           </div>
         </div>
       </nav>
@@ -77,4 +77,4 @@ function Navbar() {
   );
 }
 
-export default Navbar
+export default Navbar;

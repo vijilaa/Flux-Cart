@@ -9,6 +9,7 @@ const seller =mongoose.Schema({
             gstNumber: {type:String, unique:true},
             businessAddress:{type:String},
             AdminStatus:{type:Boolean , default:false},
+            image:{type:Object}
 
     })
 

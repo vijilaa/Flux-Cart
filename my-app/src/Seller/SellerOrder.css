@@ -1,142 +1,245 @@
-.orders-container {
-  /* This pushes the component to the right of your 240px sidebar */
-  margin-left: 260px; 
-  
-  /* This makes the component fill the remaining horizontal space */
-width: 80%;
+/* SellerOrder.css - New Design */
 
-  /* Add some padding inside the container for spacing */
-  padding: 20px; 
+/* Overall Layout for Dashboard with Sidebar */
+.seller-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  /* Apply the specified gradient background here for the whole dashboard area */
+  background: white
 
-  /* This is crucial to ensure padding doesn't add to the total width */
-  box-sizing: border-box; 
-  
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(114, 172, 199, 0.15);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #2c3e50;
-  overflow-x: auto; /* horizontal scroll if table overflows */
-  position: absolute;
-  top: 100px;
 }
 
+/* Orders Container - Main content area */
+.orders-container {
+  flex-grow: 1;
+  padding: 40px; /* Increased padding */
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white for a frosted glass effect */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+  margin: 30px; /* More space around the container */
+  animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Smooth slide-up animation */
+  transform: translateY(20px); /* Initial position for slideInUp */
+  opacity: 0; /* Start invisible */
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .orders-container h2 {
-  margin-bottom: 15px;
-  font-weight: 700;
-  font-size: 20px;
-  color: #1e90ff;
-  text-align: left;
-
+  font-size: 2.5em; /* Larger title */
+  color: #2c3e50; /* Darker, more prominent color */
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+  font-weight: 700; /* Bolder title */
 }
 
-.orders-table {
+.orders-container h2::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100px; /* Wider underline */
+  height: 4px; /* Thicker underline */
+  background-color: #5d9cec; /* A vibrant blue accent */
+  border-radius: 2px;
+}
+
+/* Table Styling */
+table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 15px; /* More space between rows */
+  margin-top: 25px;
+}
+
+thead th {
+  background-color: #5d9cec; /* Header background matching accent */
+  color: #ffffff;
+  font-weight: 600;
+  padding: 18px 25px; /* More padding */
   text-align: left;
-  font-size: 14px;
+  border-bottom: none; /* No bottom border for header */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow for sticky header */
 }
 
-.orders-table thead {
-  background: linear-gradient(to right, rgb(114, 172, 199), rgb(226, 234, 247));
-  color: #fff;
-  font-weight: 700;
-  border-radius: 8px 8px 0 0;
+/* Rounded corners for the first and last header cells */
+thead th:first-child {
+  border-top-left-radius: 10px; /* More rounded */
+}
+thead th:last-child {
+  border-top-right-radius: 10px; /* More rounded */
 }
 
-.orders-table th, 
-.orders-table td {
-  padding: 10px 12px;
-  border-bottom: 1px solid #d1d9e6;
-  white-space: nowrap;
+tbody tr {
+  background-color: #ffffff; /* White background for rows */
+  border-radius: 10px; /* Rounded corners for rows */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smooth transition */
+  opacity: 0;
+  animation: rowFadeAndSlide 0.6s ease-out forwards;
 }
 
-.orders-table tbody tr:hover {
-  background-color: #f0f7ff;
+/* Staggered animation for rows */
+tbody tr:nth-child(1) { animation-delay: 0.1s; }
+tbody tr:nth-child(2) { animation-delay: 0.2s; }
+tbody tr:nth-child(3) { animation-delay: 0.3s; }
+tbody tr:nth-child(4) { animation-delay: 0.4s; }
+tbody tr:nth-child(5) { animation-delay: 0.5s; }
+/* ... add more as needed for longer tables */
+
+@keyframes rowFadeAndSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Status colors */
-.status-pending td:nth-child(5) {
-  color: #ffb700;
-  font-weight: 600;
+tbody tr:hover {
+  transform: translateY(-5px) scale(1.005); /* Lighter lift and scale on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
-.status-accepted td:nth-child(5) {
-  color: #28a745;
-  font-weight: 600;
-}
-
-.status-rejected td:nth-child(5) {
-  color: #dc3545;
-  font-weight: 600;
-}
-
-/* Buttons */
-.btn-accept,
-.btn-reject {
-  padding: 5px 12px;
-  margin-right: 6px;
-  font-weight: 600;
-  border-radius: 5px;
+tbody td {
+  padding: 18px 25px;
+  color: #4a4a4a;
+  vertical-align: middle;
   border: none;
-  cursor: pointer;
-  font-size: 13px;
-  transition: background-color 0.3s ease;
-  user-select: none;
+  font-size: 1.05em; /* Slightly larger text */
 }
 
-.btn-accept {
-  background-color: #1e90ff;
-  color: white;
-  box-shadow: 0 2px 5px rgba(30, 144, 255, 0.4);
+/* Specific styling for first and last cells of a row to maintain rounded corners */
+tbody tr td:first-child {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+tbody tr td:last-child {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
-.btn-accept:hover {
-  background-color: #187bcd;
-  box-shadow: 0 3px 8px rgba(24, 123, 205, 0.6);
+/* Product Thumbnail */
+.product-thumbnail {
+  width: 90px; /* Larger thumbnails */
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px; /* More rounded image corners */
+  border: 2px solid #e0e0e0; /* Thicker border */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Shadow for images */
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-.btn-reject {
-  background-color: #ff4d4f;
-  color: white;
-  box-shadow: 0 2px 5px rgba(255, 77, 79, 0.4);
+.product-thumbnail:hover {
+  transform: scale(1.08); /* More pronounced zoom on image hover */
+  border-color: #5d9cec; /* Accent border on hover */
 }
 
-.btn-reject:hover {
-  background-color: #cc3b3d;
-  box-shadow: 0 3px 8px rgba(204, 59, 61, 0.6);
+/* Placeholder for No Image */
+td img[src*="placeholder"] {
+    background-color: #e9ecef; /* Light gray background for placeholders */
+    display: flex; /* To center text if it's an image-less placeholder */
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-size: 0.8em;
+    text-align: center;
 }
 
-/* No actions text */
-em {
-  color: #777;
-  font-style: italic;
-  font-size: 13px;
+
+/* No orders message */
+.orders-container > p {
+  text-align: center;
+  color: #6c757d;
+  font-size: 1.3em;
+  padding: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  margin-top: 40px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  animation: pulse 1.5s infinite alternate; /* Gentle pulse animation */
 }
 
-/* Responsive: For smaller screens where the sidebar might be hidden */
-@media (max-width: 768px) {
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  to {
+    transform: scale(1.01);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
   .orders-container {
-    /* On smaller screens, remove the margin and take up full width */
-    margin-left: 0;
-    width: 100%;
-    padding: 10px;
+    margin: 20px;
+    padding: 30px;
+  }
+  .orders-container h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+  thead th,
+  tbody td {
+    padding: 15px 20px;
+    font-size: 0.95em;
+  }
+  .product-thumbnail {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .seller-dashboard-layout {
+    flex-direction: column;
   }
 
-  .orders-table {
-    font-size: 12px;
-    min-width: 100%;
+  .orders-container {
+    margin-top: 0;
+    border-radius: 0 0 12px 12px;
   }
 
-  .orders-table th,
-  .orders-table td {
-    padding: 8px 10px;
+  /* Make table scrollable horizontally for small screens */
+  .orders-container {
+    overflow-x: auto;
   }
+  table {
+    min-width: 800px; /* Ensure table doesn't shrink too much for better readability */
+  }
+}
 
-  .btn-accept,
-  .btn-reject {
-    padding: 4px 8px;
-    font-size: 11px;
+@media (max-width: 576px) {
+  .orders-container {
+    padding: 20px;
+  }
+  .orders-container h2 {
+    font-size: 1.8em;
+  }
+  thead th,
+  tbody td {
+    padding: 12px 15px;
+  }
+  .product-thumbnail {
+    width: 60px;
+    height: 60px;
   }
 }

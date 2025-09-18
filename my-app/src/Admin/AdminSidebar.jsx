@@ -46,27 +46,19 @@ const AdminSidebar = () => {
               <span>Total Products</span>
             </li>
           </Link>
-          <Link to={'/registration'} className="sidebar-link">
+          <Link to={'/newregistration'} className="sidebar-link">
             <li
-              className={activePage === '/registration' ? 'active' : ''}
-              onClick={() => setActivePage('/registration')}
+              className={activePage === '/newregistration' ? 'active' : ''}
+              onClick={() => setActivePage('/newregistration')}
             >
               <FaUserPlus className="sidebar-icon" />
               <span>Registration</span>
             </li>
           </Link>
-          <Link to={'/settings'} className="sidebar-link">
-            <li
-              className={activePage === '/settings' ? 'active' : ''}
-              onClick={() => setActivePage('/settings')}
-            >
-              <FaCog className="sidebar-icon" />
-              <span>Settings</span>
-            </li>
-          </Link>
         </ul>
       </div>
     </div>
+
   );
 };
 export default AdminSidebar;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Contactt.css';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import axios from 'axios';
+
 const Contactt = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,30 +12,23 @@ const Contactt = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   const validate = (name, value) => {
     switch (name) {
       case 'name':
-        if (!value) {
-          return 'Name is required';
-        }
+        if (!value.trim()) return 'Name is required';
+        if (!/^[A-Za-z\s]+$/.test(value)) return 'Only letters and spaces allowed';
         break;
       case 'email':
-        if (!value) {
-          return 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(value)) {
-          return 'Email is invalid';
-        }
+        if (!value.trim()) return 'Email is required';
+        if (!/\S+@\S+\.\S+/.test(value)) return 'Email is invalid';
         break;
       case 'subject':
-        if (!value) {
-          return 'Subject is required';
-        }
+        if (!value.trim()) return 'Subject is required';
         break;
       case 'message':
-        if (!value) {
-          return 'Message is required';
-        }
+        if (!value.trim()) return 'Message is required';
         break;
       default:
         break;
@@ -44,28 +38,57 @@ const Contactt = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
-    setErrors({
-      ...errors,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
       [name]: validate(name, value),
-    });
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const validateAllFields = () => {
+    const newErrors = {};
+    let isValid = true;
+
+    for (let field in formData) {
+      const errorMsg = validate(field, formData[field]);
+      if (errorMsg) {
+        newErrors[field] = errorMsg;
+        isValid = false;
+      }
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  axios.post("http://localhost:5000/addcontact",formData)
-    .then((result) => {
-      console.log(result);
-      
-    
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-    alert("Blog Added Successfully!");
+
+    if (!validateAllFields()) {
+      return;
+    }
+
+    try {
+      const res = await axios.post("http://localhost:5000/addcontact", formData);
+      console.log(res.data);
+      setSubmitted(true);
+      alert("Message sent successfully!");
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setErrors({});
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -83,6 +106,7 @@ const Contactt = () => {
 
         <form className="contact-form" onSubmit={handleSubmit} noValidate>
           <h3>Send a Message</h3>
+
           <input
             type="text"
             name="name"

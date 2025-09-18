@@ -1,6 +1,6 @@
 const mongoose =require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1/Register')
+mongoose.connect('mongodb://127.0.0.1/Ecom-Project')
 var db = mongoose.connection
 db.on('error' , console.error.bind('error'))
 

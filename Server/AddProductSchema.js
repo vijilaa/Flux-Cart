@@ -8,6 +8,7 @@ const product = mongoose.Schema({
       stock: { type: Number },
       image: { type: Object },
       count:{type:Number},
+      
       SellerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Seller' },
       UserId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 

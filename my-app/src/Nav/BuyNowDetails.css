@@ -1,131 +1,374 @@
 /* BuyNowDetails.css */
-.buy-now-details-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align to the top */
-    min-height: calc(100vh - 60px); /* Adjust for header/footer if any */
-    background-color: #f0f2f5;
-    padding: 20px;
-    box-sizing: border-box;
-}
 
-.purchase-history-card { /* Main container for all purchases */
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 900px; /* Wider card for history */
-    text-align: center;
-}
-
-.history-title {
+/* General Body Styling */
+body {
+    font-family: 'Poppins', sans-serif; /* A modern, clean font */
+    background-color: #f4f7f6; /* Light, calming background */
+    margin: 0;
+    padding: 0; /* Remove padding from body to let wrapper handle it */
     color: #333;
-    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Main Page Wrapper for BuyNowDetails */
+.buy-now-details-page-wrapper {
+    max-width: 900px;
+    margin: 30px auto; /* Center the entire component */
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft, elegant shadow */
+    animation: fadeIn 0.8s ease-out; /* Fade in the main container */
+    box-sizing: border-box; /* Ensure padding doesn't increase total width */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Content Area within the main wrapper */
+.buy-details-content-area {
+    width: 100%; /* Ensure it takes full width of its parent */
+}
+
+.buy-details-history-title {
     font-size: 2.5em;
+    color: #2c3e50; /* Darker blue for titles */
+    text-align: center;
+    margin-bottom: 10px;
     font-weight: 700;
+    animation: slideInTop 0.6s ease-out;
 }
 
-.history-subtitle {
-    color: #555;
-    font-size: 1.2em;
+.buy-details-history-subtitle {
+    font-size: 1.1em;
+    color: #7f8c8d; /* Muted grey for subtitles */
+    text-align: center;
     margin-bottom: 40px;
+    animation: slideInTop 0.7s ease-out 0.2s backwards; /* Delayed animation */
 }
 
-/* Styles for individual purchase items */
-.purchase-item-card {
-    border: 1px solid #e0e0e0;
+@keyframes slideInTop {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Individual Purchase Item Card */
+.buy-details-purchase-item-card {
+    background-color: #fdfdfd;
+    border: 1px solid #e0e7e9;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Important for containing floated/positioned elements */
+    box-sizing: border-box; /* Ensure padding doesn't increase total width */
+}
+
+.buy-details-purchase-item-card:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.buy-details-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1; /* Separator line */
+    font-size: 1.3em;
+    color: #34495e;
+    font-weight: 600;
+}
+
+.buy-details-order-id-label {
+    flex-grow: 1;
+}
+
+.buy-details-purchase-date {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.buy-details-purchase-item-card p strong { /* Specificity for strong tags within purchase card */
+    color: #333;
+}
+
+/* Delete Button within Purchase Item Card */
+.buy-details-delete-button {
+    background-color: #e74c3c; /* Red for delete */
+    color: white;
+    border: none;
+    padding: 8px 18px;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 25px;
-    text-align: left;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 20px; /* Space from text */
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
-.purchase-item-header {
-    color: #007bff;
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
+.buy-details-delete-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translateY(-2px);
 }
 
-.purchase-details-grid {
+.buy-details-delete-button:active {
+    transform: translateY(0);
+}
+
+/* Purchase Details Grid for Product and Shipping Info */
+.buy-details-info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr 2fr; /* Shipping takes 1 part, Products 2 parts */
+    gap: 30px; /* Space between columns */
     margin-top: 20px;
 }
 
-.detail-group h4 {
-    color: #555;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    border-bottom: 1px dashed #e0e0e0;
+.buy-details-group h4.buy-details-group-title { /* More specific selector */
+    font-size: 1.15em;
+    color: #2980b9; /* Blue for group titles */
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #dbe4e6;
     padding-bottom: 5px;
 }
 
-.detail-group p {
-    margin-bottom: 5px;
-    color: #666;
+.buy-details-product-list {
+    list-style: none; /* Remove default list style */
+    padding: 0;
+    margin: 0;
 }
 
-.detail-group ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    padding-left: 0;
-    color: #666;
+.buy-details-product-list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #f9fbfb;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: background-color 0.2s ease;
 }
 
-.detail-group li {
-    margin-bottom: 3px;
+.buy-details-product-list-item:hover {
+    background-color: #edf2f5;
 }
 
-/* General button style for links */
-.btn-primary {
-    background-color: #007bff;
+.buy-details-product-info {
+    margin-left: 15px;
+    flex-grow: 1; /* Allow product info to take available space */
+}
+
+/* Product Thumbnail Image */
+.buy-details-product-thumbnail {
+    width: 70px;
+    height: 70px;
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    border-radius: 6px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    flex-shrink: 0; /* Prevent thumbnail from shrinking */
+}
+
+.buy-details-product-list-item:hover .buy-details-product-thumbnail {
+    transform: scale(1.05); /* Slightly enlarge image on list item hover */
+}
+
+.buy-details-no-products-message,
+.buy-details-total-quantity {
+    margin-top: 10px;
+    font-style: italic;
+    color: #777;
+}
+
+
+/* Back to Shop Link */
+.buy-details-back-to-shop {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.buy-details-back-to-shop-button {
+    display: inline-block;
+    background-color: #3498db; /* Blue for call to action */
     color: white;
     padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-    display: inline-block; /* For the "Go to Home" / "Start Shopping" buttons */
-    margin-top: 20px; /* Adjust spacing for buttons */
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-/* Specific styling for error messages/cards */
-.error-card {
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    color: #721c24;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 20px auto;
-    text-align: center;
-}
-
-.error-card h2 {
-    color: #721c24;
-}
-
-.back-to-shop {
-    margin-top: 30px;
-    font-size: 1.1em;
-}
-
-.back-to-shop a {
-    color: #007bff;
     text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
 }
 
-.back-to-shop a:hover {
-    text-decoration: underline;
+.buy-details-back-to-shop-button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: translateY(-3px);
+}
+
+.buy-details-back-to-shop-button:active {
+    transform: translateY(0);
+}
+
+
+/* Loading, Error, and Empty State Styling */
+.buy-details-status-card {
+    text-align: center;
+    padding: 40px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    box-sizing: border-box; /* Crucial for preventing width issues */
+}
+
+.buy-details-status-title {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.buy-details-status-message {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.buy-details-status-button {
+    display: inline-block;
+    background-color: #28a745; /* Green for primary action */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buy-details-status-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Specific styling for error state */
+.buy-details-status-card.buy-details-error {
+    background-color: #ffebee; /* Light red background for errors */
+    border: 1px solid #ef9a9a;
+    color: #c0392b;
+}
+
+.buy-details-status-card.buy-details-error .buy-details-status-title {
+    color: #c0392b;
+}
+
+/* Specific styling for loading state */
+.buy-details-status-card.buy-details-loading {
+    background-color: #e8f5e9; /* Light green for loading */
+    border: 1px solid #a5d6a7;
+    animation: pulseBackground 2s infinite ease-in-out;
+}
+
+@keyframes pulseBackground {
+    0% { background-color: #e8f5e9; }
+    50% { background-color: #f0fdf1; }
+    100% { background-color: #e8f5e9; }
+}
+
+/* Specific styling for empty state */
+.buy-details-status-card.buy-details-empty {
+    background-color: #f8f9fa; /* Light grey for empty */
+    border: 1px solid #dee2e6;
+    color: #6c757d;
+}
+.buy-details-status-card.buy-details-empty .buy-details-status-title {
+    color: #6c757d;
+}
+.buy-details-status-card.buy-details-empty .buy-details-status-button {
+    background-color: #6c757d;
+}
+.buy-details-status-card.buy-details-empty .buy-details-status-button:hover {
+    background-color: #5a6268;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .buy-now-details-page-wrapper {
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    .buy-details-history-title {
+        font-size: 2em;
+    }
+
+    .buy-details-item-header {
+        flex-direction: column; /* Stack header items */
+        align-items: flex-start;
+        font-size: 1.1em;
+        padding-bottom: 10px;
+    }
+
+    .buy-details-delete-button {
+        margin-left: 0;
+        margin-top: 10px;
+        align-self: flex-end; /* Align delete button to the right */
+    }
+
+    .buy-details-info-grid {
+        grid-template-columns: 1fr; /* Stack shipping and product info vertically */
+        gap: 20px;
+    }
+
+    .buy-details-product-list-item {
+        flex-direction: column; /* Stack image and text in product list */
+        align-items: center;
+        text-align: center;
+    }
+
+    .buy-details-product-info {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .buy-details-history-title {
+        font-size: 1.7em;
+    }
+
+    .buy-details-history-subtitle {
+        font-size: 0.9em;
+    }
+
+    .buy-details-purchase-item-card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .buy-details-product-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+
+    .buy-details-delete-button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+
+    .buy-details-back-to-shop-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .buy-details-status-title {
+        font-size: 1.5em;
+    }
+    .buy-details-status-message {
+        font-size: 0.9em;
+    }
 }

@@ -39,12 +39,19 @@ const BuyTotalProduct = () => {
     }, [location.state, navigate]); // Add navigate to dependency array
 
     // A single handler to update form data based on input name
-    const handleChange = (e) => {
+   const handleChange = (e) => {
         const { id, value } = e.target;
-        setFormData(prev => ({ ...prev, [id]: value }));
-        // Clear error for the field being edited
-        if (errors[id]) {
-            setErrors(prev => ({ ...prev, [id]: undefined }));
+
+        if (id === 'fullName') {
+            // Allow only letters and spaces
+            const filteredValue = value.replace(/[^a-zA-Z\s]/g, '');
+            setFormData(prev => ({ ...prev, [id]: filteredValue }));
+        } else if (['quantity', 'zip', 'cardNumber', 'cvv'].includes(id)) {
+            // Allow only digits
+            const numericValue = value.replace(/\D/g, '');
+            setFormData(prev => ({ ...prev, [id]: numericValue }));
+        } else {
+            setFormData(prev => ({ ...prev, [id]: value }));
         }
     };
 
@@ -67,8 +74,8 @@ const BuyTotalProduct = () => {
         }
 
         // Rule 2: Check for specific formats
-        if (formData.zip && !/^\d{5}$/.test(formData.zip)) {
-            newErrors.zip = 'ZIP Code must be 5 digits.';
+        if (formData.zip && !/^\d{6}$/.test(formData.zip)) {
+            newErrors.zip = 'ZIP Code must be 6 digits.';
         }
         if (formData.cardNumber && !/^\d{13,19}$/.test(formData.cardNumber.replace(/\s/g, ''))) { // Allow spaces, common for card numbers
             newErrors.cardNumber = 'Card Number must be between 13 and 19 digits.';
@@ -85,7 +92,7 @@ const BuyTotalProduct = () => {
                 newErrors.expiry = 'Expiry Date cannot be in the past.';
             }
         }
-        if (formData.cvv && !/^\d{3,4}$/.test(formData.cvv)) { // CVV can be 3 or 4 digits
+        if (formData.cvv && !/^\d{3}$/.test(formData.cvv)) { // CVV can be 3 or 4 digits
             newErrors.cvv = 'CVV must be 3 or 4 digits.';
         }
 
@@ -178,7 +185,7 @@ const BuyTotalProduct = () => {
                                     type="text"
                                     id="zip"
                                     className="form-input"
-                                    placeholder="12345"
+                                    placeholder="123456"
                                     value={formData.zip}
                                     onChange={handleChange}
                                 />
@@ -202,7 +209,7 @@ const BuyTotalProduct = () => {
                                 placeholder="**** **** **** ****"
                                 value={formData.cardNumber}
                                 onChange={handleChange}
-                                maxLength="19" // Max length for visual input, actual validation is more robust
+                                maxLength="16" // Max length for visual input, actual validation is more robust
                             />
                             {errors.cardNumber && <p className="error-text">{errors.cardNumber}</p>}
                         </div>
@@ -216,7 +223,7 @@ const BuyTotalProduct = () => {
                                     placeholder="MM/YY"
                                     value={formData.expiry}
                                     onChange={handleChange}
-                                    maxLength="5" // MM/YY
+                                    maxLength="6" // MM/YY
                                 />
                                 {errors.expiry && <p className="error-text">{errors.expiry}</p>}
                             </div>
@@ -229,7 +236,7 @@ const BuyTotalProduct = () => {
                                     placeholder="123"
                                     value={formData.cvv}
                                     onChange={handleChange}
-                                    maxLength="4" // CVV can be 3 or 4 digits
+                                    maxLength="3" // CVV can be 3 or 4 digits
                                 />
                                 {errors.cvv && <p className="error-text">{errors.cvv}</p>}
                             </div>

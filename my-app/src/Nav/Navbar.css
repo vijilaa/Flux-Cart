@@ -28,3 +28,89 @@
     font-size: 16px;
     cursor: pointer;
   }
+  /* Add these styles to your Navbar.css file */
+
+.logout-btn {
+    background-color: #dc3545; /* Red for logout */
+    color: white;
+    border: 1px solid #dc3545;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+}
+
+.login-btn {
+    background-color: #007bff; /* Blue for login */
+    color: white;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    color: white;
+}
+
+/* General button styling for the new buttons */
+.d-flex .btn.rounded-pill {
+    padding: 8px 15px; /* Adjust padding for better look */
+    font-size: 0.95rem;
+    display: flex; /* For icon and text alignment */
+    align-items: center;
+}
+
+.d-flex .btn.rounded-pill .svg-inline--fa {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Ensure existing buttons still look good */
+.d-flex .btn.rounded-pill:not(.logout-btn):not(.login-btn) {
+    background-color: #f0f0f0; /* Light background for cart/heart */
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.d-flex .btn.rounded-pill:not(.logout-btn):not(.login-btn):hover {
+    background-color: #e2e2e2;
+    color: #000;
+}
+
+/* Adjustments for the brand and nav links if needed */
+.navbar-brand .span-mini {
+  color: #007bff; /* Example color */
+  font-weight: bold;
+}
+
+.navbar-brand .span-zoo {
+  color: #28a745; /* Example color */
+  font-weight: bold;
+}
+
+.nav-link.text-dark {
+    color: #333 !important; /* Ensure dark text for links */
+}
+
+.nav-link.text-dark:hover {
+    color: #007bff !important; /* Highlight on hover */
+}
+.icon-btn {
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  color: #ffffff; /* White icon color */
+  padding: 0.5rem 0.75rem; /* Padding for clickability */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: flex; /* For better icon centering */
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  color: #ffc107; /* Yellow on hover */
+  background-color: rgba(255, 193, 7, 0.1); /* Light yellow background on hover */
+  cursor: pointer;
+}

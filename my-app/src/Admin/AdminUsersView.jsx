@@ -50,6 +50,7 @@ const AdminUsersView = () => {
         <table className="user-table">
           <thead>
             <tr>
+              <th>Image</th> {/* Moved 'Image' to the first column header */}
               <th>Name</th>
               <th>Email</th>
               <th>Phone Number</th>
@@ -62,6 +63,17 @@ const AdminUsersView = () => {
               // If yes, loop through it and create a table row for each user
               users.map(user => (
                 <tr key={user._id}>
+                  <td>
+                    {user.image && user.image.filename ? (
+                      <img
+                        src={`http://localhost:5000/upload/${user.image.filename}`}
+                        alt={user.name}
+                        className="user-profile-image" // Add a class for styling
+                      />
+                    ) : (
+                      <span>No Image</span> // Fallback if no image
+                    )}
+                  </td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.number}</td>
@@ -71,7 +83,7 @@ const AdminUsersView = () => {
             ) : (
               // If no, show a message in the table
               <tr>
-                <td colSpan="3" className="no-data-message">No users found.</td>
+                <td colSpan="5" className="no-data-message">No users found.</td> {/* Corrected colspan */}
               </tr>
             )}
           </tbody>

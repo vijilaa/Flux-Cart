@@ -1,33 +1,96 @@
-.full_nav {
-  background-color: #f8f9fa; /* A light grey background */
-  border-bottom: 1px solid #e7e7e7;
+.modern-navbar-wrapper {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-nav .nav-link {
-  font-size: 1.1rem;
+.modern-navbar-container {
+  padding: 1rem 0;
+   background: linear-gradient(to right,rgb(114, 172, 199),rgb(226, 234, 247));
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Updated: Use flexbox for the Nav to push items to ends */
+.modern-nav-links {
+  width: 100%; /* Ensure it takes full width of the collapse area */
+  display: flex; /* Enable flexbox */
+  justify-content: space-between; /* Pushes content to the ends */
+  align-items: center; /* Vertically align items */
+}
+
+.modern-nav-content-left {
+  display: flex; /* Group the left-aligned navigation links */
+  align-items: center;
+}
+
+.modern-nav-actions-right {
+  display: flex; /* Group the profile icon and logout button */
+  align-items: center;
+}
+
+.modern-nav-links .nav-link {
+  color: #333333 !important;
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+  /* Remove specific margin-left if added elsewhere, let flexbox handle it */
+}
+
+.modern-nav-links .nav-link:hover {
+  color: #007bff !important;
+}
+
+.modern-profile-icon {
+  display: flex;
+  align-items: center;
+  /* Adjust margin as needed, no longer relying on margin-left for spacing from other nav items */
+  margin-right: 1rem; /* Space between icon and logout button */
+  color: #555555 !important;
+  transition: color 0.3s ease;
+}
+
+.modern-profile-icon:hover {
+  color: #007bff !important;
+}
+
+.modern-logout-btn {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #ffffff;
+  font-weight: 500;
   padding: 0.5rem 1rem;
-  transition: color 0.3s ease-in-out;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  /* No need for ms-3 if using flexbox for spacing */
 }
 
-.navbar-nav .nav-link:hover {
-  color: #007bff !important; /* A bootstrap primary color on hover */
+.modern-logout-btn:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+  color: #ffffff;
 }
 
-/* Styling for the mobile menu toggle button */
-.navbar-toggler {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
+/* For smaller screens */
+@media (max-width: 575.98px) {
+  .modern-nav-links {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+  }
 
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
+  .modern-nav-content-left,
+  .modern-nav-actions-right {
+    flex-direction: column; /* Stack their internal items too */
+    width: 100%; /* Take full width */
+    align-items: flex-start; /* Align to the left */
+  }
 
-/* Center the nav links when the screen is larger */
-@media (min-width: 576px) {
-  .navbar-nav {
-    margin-left: auto !important;
-    margin-right: auto !important;
+  .modern-nav-links .nav-link {
+    margin: 0.5rem 0;
+  }
+
+  .modern-profile-icon {
+    margin: 0.5rem 0; /* Stack icon with space */
+  }
+
+  .modern-logout-btn {
     width: 100%;
-    justify-content: center;
+    margin: 0.5rem 0; /* Stack button with space */
   }
 }

@@ -1,0 +1,154 @@
+/* SellerProfileEdit.css */
+
+.edit-seller-profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.edit-seller-profile-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.edit-seller-profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-seller-profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.edit-seller-profile-form input[type="text"],
+.edit-seller-profile-form input[type="email"],
+.edit-seller-profile-form input[type="date"] {
+    width: calc(100% - 20px); /* Account for padding */
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-seller-profile-form input[type="text"]:focus,
+.edit-seller-profile-form input[type="email"]:focus,
+.edit-seller-profile-form input[type="date"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* Image preview styles */
+.current-image-preview {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.current-image-preview p {
+    color: #777;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.current-profile-img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%; /* Makes the image circular */
+    border: 3px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    object-fit: cover; /* Ensures image covers the area without distortion */
+}
+
+.edit-seller-profile-form input[type="file"] {
+    margin-top: 10px;
+    padding: 5px 0;
+}
+
+.edit-seller-profile-form small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 0.85em;
+}
+
+.edit-seller-profile-form button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.edit-seller-profile-form button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.edit-seller-profile-form button[type="submit"]:active {
+    background-color: #004085;
+    transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .edit-seller-profile-container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .edit-seller-profile-container h2 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-seller-profile-container {
+        margin: 15px;
+        padding: 15px;
+    }
+
+    .edit-seller-profile-container h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .edit-seller-profile-form input[type="text"],
+    .edit-seller-profile-form input[type="email"],
+    .edit-seller-profile-form input[type="date"] {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+
+    .edit-seller-profile-form button[type="submit"] {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .current-profile-img {
+        max-width: 100px;
+    }
+}

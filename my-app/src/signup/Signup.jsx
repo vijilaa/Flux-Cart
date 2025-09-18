@@ -13,8 +13,10 @@ function Signup() {
     email: "",
     password: "",
     repeatpassword: "",
-  });
+    image: null,
 
+  });
+  const [preview, setImagePreview] = useState("");
 
 
   const [error, setError] = useState({
@@ -25,12 +27,39 @@ function Signup() {
     repeatpassword: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  let filteredValue = value;
+
+  // Input restrictions by field
+  if (name === "name") {
+    // Only letters and spaces
+    filteredValue = value.replace(/[^A-Za-z\s]/g, '');
+  }
+
+  if (name === "number") {
+    // Only numbers (digits)
+    filteredValue = value.replace(/[^0-9]/g, '');
+  }
+
+  // You can add other fields if needed, like restricting password characters, etc.
+  
+  setFormData({
+    ...formData,
+    [name]: filteredValue,
+  });
+};
+
+    const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({
+        ...formData,
+        image: file
+      });
+      setImagePreview(URL.createObjectURL(file));
+    }
   };
 
   const validateForm = () => {
@@ -98,11 +127,26 @@ function Signup() {
   const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append( 'number',formData.number);
+     data.append('email',formData.email) ;          
+     data.append('password', formData.password)
+    data.append( 'repeatpassword',formData.repeatpassword);
+ if (formData.image) {
+      data.append('image', formData.image);
+    }
 
-      if (!validateForm()) {
-    return;
-  }
-    axios.post("http://localhost:5000/userregister", formData)
+
+
+    if (!validateForm()) {
+      return;
+    }
+ axios.post("http://localhost:5000/userregister", data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
       .then((result) => {
 
         console.log(result);
@@ -111,7 +155,7 @@ function Signup() {
       })
       .catch((error) => {
         console.log(error);
-         alert("Something went wrong. Please try again.");
+        alert("Something went wrong. Please try again.");
       });
 
   }
@@ -124,6 +168,20 @@ function Signup() {
         <div className="user-signup-box">
           <div className='user-signup-blur-bg'></div>
           <h4 className="user-signup-h4 mt-3">SIGNUP</h4>
+          <div className="image-upload-group">
+            {/* Display a placeholder if no image is selected */}
+            <img src={preview || "https://via.placeholder.com/160"} alt="" />
+            <label htmlFor="file-upload" className="custom-file-input">
+              Choose Image
+            </label>
+            <input 
+              id="file-upload"
+              type="file" 
+              name="image" 
+              onChange={handleFileChange} 
+              accept="image/*"
+            />
+          </div>
 
           <form onSubmit={handleSubmit} className="user-signup-form mt-4 mb-5">
             <div className="user-signup-logo-and-input">

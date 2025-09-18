@@ -1,168 +1,234 @@
-/* Import a Google Font for a clean, modern typeface (Optional) */
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+/* AddtoCart.css */
 
-/* 
-  This is the main card style. 
-  The 'margin' property is key here, as it creates space between items 
-  without needing a flex or grid container.
-*/
+/* General body styling for better overall presentation */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* Light background for contrast */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container for all order cards */
+.AddtoCart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling for individual order cards */
 .orderr-card-size- {
-  font-family: 'Nunito Sans', sans-serif;
-  display: flex;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
-  margin: 1.5rem auto; /* Creates vertical space between cards and centers them */
-  max-width: 750px; /* Adjust this to control the width of your cards */
-  width: 90%; /* Responsive width */
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* Entrance animation */
-  animation: slideInFromLeft 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  opacity: 0;
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Vertically align items in the middle */
+    background-color: #ffffff;
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+    margin-bottom: 25px; /* Increased space between cards */
+    padding: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover effects */
+    overflow: hidden; /* Ensures no content spills out with border-radius */
 }
 
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* A more prominent shadow on hover */
 .orderr-card-size-:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-8px) scale(1.01); /* Lift and slightly enlarge on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
 }
 
-/* Image section */
+/* Image Wrapper */
 .orderr-image-wrapper {
-  flex-shrink: 0;
-  width: 220px;
-  background-color: #f8f8f8; /* A light background for the image */
+    flex-shrink: 0; /* Prevents image from shrinking */
+    width: 150px; /* Fixed width for the image container */
+    height: 150px; /* Fixed height */
+    border-radius: 8px;
+    overflow: hidden; /* Clip image if it exceeds bounds */
+    margin-right: 30px; /* Space between image and info */
+    border: 1px solid #e0e0e0; /* Subtle border around image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .orderr-image-view {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the whole image is visible, scales down if needed */
+    transition: transform 0.3s ease; /* Smooth zoom on hover */
 }
 
 .orderr-card-size-:hover .orderr-image-view {
-  transform: scale(1.08); /* A nice zoom effect on hover */
+    transform: scale(1.05); /* Slightly zoom image on card hover */
 }
 
-/* Information section */
+/* Order Info Section */
 .orderr-info {
-  padding: 1.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    flex-grow: 1; /* Allows info section to take up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute space vertically */
 }
 
 .orderr-title-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #2d3748;
-  margin: 0 0 0.5rem 0;
+    font-size: 1.8em; /* Larger product title */
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .orderr-description {
-  font-size: 0.95rem;
-  color: #4a5568;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-  flex-grow: 1; /* Pushes content below it down */
-}
-.orderr-description strong {
-  font-weight: 600;
-  color: #2d3748;
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    max-height: 60px; /* Limit description height */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for truncated text */
 }
 
 .orderr-price-tag-name {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #3182ce; /* A nice, friendly blue */
-  margin-bottom: 0.25rem;
+    font-size: 1.6em; /* Prominent price */
+    color: #e67e22; /* A vibrant orange for price */
+    font-weight: 700;
+    margin-bottom: 10px;
+    animation: pulsePrice 2s infinite ease-in-out; /* Subtle pulse animation */
 }
+
+@keyframes pulsePrice {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 
 .orderr-category-badge-cat {
-  font-size: 0.85rem;
-  color: #718096;
-  margin-bottom: 1.5rem;
-}
-.orderr-category-badge-cat strong {
-  font-weight: 600;
+    font-size: 0.9em;
+    color: #27ae60; /* Green for category */
+    background-color: #e8f8f5;
+    padding: 5px 10px;
+    border-radius: 5px;
+    align-self: flex-start; /* Align badge to the start */
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
-/* Buttons section */
+/* Buttons Container */
 .orderr-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: auto; /* Aligns buttons to the bottom of the card */
+    margin-top: 15px;
+    align-self: flex-end; /* Align buttons to the right */
 }
 
-/* Universal button styles */
-.btn-add-to-cart-order,
-.btn-buy-now {
-  padding: 10px 20px;
-  border: 2px solid;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease-in-out;
-}
-
-/* Remove button */
+/* Add to Cart/Remove Button */
 .btn-add-to-cart-order {
-  background-color: transparent;
-  border-color: #cbd5e0;
-  color: #4a5568;
+    background-color: #e74c3c; /* Red for remove button */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); /* Shadow for button */
 }
 
 .btn-add-to-cart-order:hover {
-  background-color: #e53e3e;
-  border-color: #e53e3e;
-  color: #fff;
-  transform: translateY(-2px);
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translateY(-3px); /* Lift button on hover */
 }
 
-/* Buy Now button */
-.btn-buy-now {
-  background-color: #3182ce;
-  border-color: #3182ce;
-  color: #fff;
+.btn-add-to-cart-order:active {
+    transform: translateY(0); /* Press effect */
+    box-shadow: 0 2px 5px rgba(231, 76, 60, 0.4);
 }
 
-.btn-buy-now:hover {
-  background-color: #2b6cb0;
-  border-color: #2b6cb0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+/* Empty Cart Message */
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.5em;
+    color: #7f8c8d;
+    padding: 50px 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 50px;
+    animation: fadeIn 1s ease-out;
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 650px) {
-  .orderr-card-size- {
-    flex-direction: column;
-    width: 95%;
-    margin: 1rem auto;
-  }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-  .orderr-image-wrapper {
-    width: 100%;
-    height: 250px; /* Give a fixed height on mobile */
-  }
+/* Loading and Error Messages */
+div:has(> .AddtoCart-loading, > .AddtoCart-error) {
+    text-align: center;
+    font-size: 1.3em;
+    color: #34495e;
+    padding: 40px 20px;
+    background-color: #fdfefe;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
 
-  .orderr-info {
-    padding: 1rem 1.5rem;
-  }
+.AddtoCart-loading {
+    color: #3498db;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.AddtoCart-error {
+    color: #e74c3c;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .orderr-card-size- {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        text-align: center;
+    }
+
+    .orderr-image-wrapper {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .orderr-info {
+        align-items: center;
+    }
+
+    .orderr-category-badge-cat,
+    .orderr-buttons {
+        align-self: center; /* Center these elements as well */
+    }
+
+    .orderr-title-name {
+        font-size: 1.5em;
+    }
+
+    .orderr-price-tag-name {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .orderr-card-size- {
+        padding: 15px;
+    }
+
+    .orderr-image-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .btn-add-to-cart-order {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
 }

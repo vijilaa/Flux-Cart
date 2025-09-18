@@ -1,0 +1,103 @@
+/* src/components/EditProfile.css */
+.edit-profile-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.edit-profile-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.edit-profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.edit-profile-form input[type="text"],
+.edit-profile-form input[type="email"],
+.edit-profile-form input[type="tel"] { /* Assuming 'number' could be type 'tel' */
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.edit-profile-form input[type="file"] {
+    padding: 8px 0;
+}
+
+.edit-profile-form button {
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-form button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.edit-profile-form button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.edit-profile-form .cancel-button {
+    background-color: #6c757d; /* Grey for cancel */
+}
+
+.edit-profile-form .cancel-button:hover:not(:disabled) {
+    background-color: #5a6268;
+}
+
+.success-message {
+    color: #28a745; /* Green */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.error-message {
+    color: #dc3545; /* Red */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.current-image-preview {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.current-image-preview p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.current-profile-img {
+    width: 100px; /* Adjust size as needed */
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}

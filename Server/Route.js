@@ -3,21 +3,27 @@ const app = express.Router()
 
 
 const RegistrationController = require("./RegistrationController")
-app.post('/userregister',RegistrationController.UserRegistration)
+app.post('/userregister',RegistrationController.UserImage,RegistrationController.UserRegistration)
 app.get('/viewall',RegistrationController.ViewUser )
 app.get('/useone/:id',RegistrationController.UserId)
 app.post('/one',RegistrationController.findOneUser)
-app.put('/update/:id',RegistrationController.UpdateUser)
+app.put('/update/:id',RegistrationController.UserImage,RegistrationController.UpdateUser)
 app.delete('/delete/:id',RegistrationController.deleteUser)
+app.post('/forgot',RegistrationController.ForgotUser)
+
+
 
 
 const SellerController = require("./SellerController")
-app.post('/sellerregister',SellerController.SellerRegisterSchema)
+app.post('/sellerregister',SellerController.SellerImage,SellerController.SellerRegisterSchema)
 app.get('/viewallseller',SellerController.ViewSeller)
 app.get('/oneseller/:id',SellerController.SellerId)
 app.post('/foneseller',SellerController.findOneSeller)
-app.put('/updateseller/:id',SellerController.UpdateSeller)
+app.put('/updateseller/:id',SellerController.SellerImage,SellerController.UpdateSeller)
 app.delete('/deleteseller/:id',SellerController.deleteSeller)
+app.post('/forgotseller',SellerController.ForgotSeller)
+app.put("/activate/:id",SellerController.updatesellerregistration)
+
 
 const AddProductController = require('./AddProductController')
 app.post('/productregister',AddProductController.productImage,AddProductController.AddProSchema)
@@ -37,6 +43,7 @@ app.get('/vieworder/:OrderId',OrderController.viewOrderId )
 app.get('/viewallorder',OrderController.ViewOrder)
 app.get('/userorders/:UserId',OrderController.UserOrders)
 app.delete('/deleteorder/:id',OrderController.OrderDelete)
+app.put('/statuscheck',OrderController.updateorder)
 
 
 const ContactController = require('./ContactController'); 

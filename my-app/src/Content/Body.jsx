@@ -10,7 +10,7 @@ function Body() {
      
  <div className="landing-container">
     
-      <h1 style={{ fontSize: '3.5rem' }}>Welcome to<span className='fw-bold'>  MINIZOO!</span></h1>
+      <h1 style={{ fontSize: '3.5rem' }}>Welcome to<span className='fw-bold'>  FLUXCART!</span></h1>
 <p style={{ fontSize: '3.5rem' }}>Shop the Best, Delivery Fast</p>
 <p style={{ fontSize: '1.5rem' }}>Discover exclusive deals, premium brands, and seamless shopping—all in one place.</p>
     </div>                                  

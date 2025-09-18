@@ -99,6 +99,7 @@ console.log(product);
 
 const viewAllPurchases = (req, res) => {
     BuyerSchema.find()
+    .populate("productIds")
         .then((result) => {
             res.json({
                 data: result,
