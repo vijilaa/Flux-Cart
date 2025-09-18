@@ -32,9 +32,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(5px); /* Apply blur here */
+    filter: blur(5px); 
     z-index: 1;
-    opacity: 0.8; /* Optional: Dim the background */
+    opacity: 0.8; 
   }
   .user-login-content {
     position: relative;

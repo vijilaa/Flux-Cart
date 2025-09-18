@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 const CartFooter = (props) => {
   const [total, setTotal] = useState(0);
-  const [productIds, setProductIds] = useState([]); // State to hold all ProductIds
+  const [productIds, setProductIds] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Calculate the total and extract ProductIds
+ 
     const addedProductsTotal = props.orders.reduce((sum, order) => {
       if (order.ProductId && typeof order.ProductId.price === 'number') {
         return sum + order.ProductId.price;
@@ -16,9 +16,9 @@ const CartFooter = (props) => {
       return sum;
     }, 0);
 
-    // Extract all product IDs
+
     const ids = props.orders
-      .filter(order => order.ProductId && order.ProductId._id) // Ensure ProductId and its _id exist
+      .filter(order => order.ProductId && order.ProductId._id) 
       .map(order => order.ProductId._id);
 
     setTotal(addedProductsTotal);
@@ -27,7 +27,6 @@ const CartFooter = (props) => {
   }, [props.orders]);
 
   const handlebuydetails = () => {
-    // Navigate to /Buynow and pass productIds in the state
     navigate('/Buynow', { state: { productIds: productIds } });
   }
 

@@ -18,15 +18,12 @@ const SellerDashboard = () => {
       return;
     }
 
-    // Fetch and filter orders
+
     axios.get(`http://localhost:5000/viewallpurchases`)
       .then(res => {
-        console.log("Raw Purchase Data:", res.data.data); // Log the raw data to confirm
+        console.log("Raw Purchase Data:", res.data.data); 
         const allPurchases = res.data.data;
-
-        // Filter purchases where *any* product within the purchase's productIds array matches the sellerId
         const sellersOrders = allPurchases.filter(purchase =>
-          // Check if productIds array exists and is an array before calling some
           Array.isArray(purchase.productIds) &&
           purchase.productIds.some(product => product.SellerId === SellerId)
         );
@@ -41,10 +38,6 @@ const SellerDashboard = () => {
           if (Array.isArray(purchase.productIds)) {
             purchase.productIds.forEach(product => {
               if (product.SellerId === SellerId) {
-                // Use purchase.quantity as the quantity for this entire purchase
-                // If quantity is specific to each product in productIds, you'd need to adjust your backend.
-                // For now, assuming purchase.quantity applies to the entire order,
-                // and you want to sum up the value of *your* specific products in that order.
                 const itemQuantity = parseFloat(purchase.quantity) || 1; // Default to 1 if not a valid number
                 const itemTotal = product.price * itemQuantity;
                 grossSales += itemTotal;

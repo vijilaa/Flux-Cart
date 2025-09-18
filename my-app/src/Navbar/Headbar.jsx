@@ -20,9 +20,9 @@ function Headbar() {
         <Container>
           <Navbar.Toggle aria-controls="mynavbar" />
           <Navbar.Collapse id="mynavbar">
-            {/* The main Nav now holds the two new groups */}
+
             <Nav className="modern-nav-links">
-              {/* Left-aligned content */}
+
               <div className="modern-nav-content-left">
                 <Nav.Link as={Link} to="/side" className="text-dark">Home</Nav.Link>
                 <Nav.Link as={Link} to="/Seller-about" className="text-dark">About</Nav.Link>
@@ -30,7 +30,6 @@ function Headbar() {
                 <Nav.Link as={Link} to="/seller-contact" className="text-dark">Contact</Nav.Link>
               </div>
 
-              {/* Right-aligned content */}
               <div className="modern-nav-actions-right">
                 <Nav.Link as={Link} to="/sellerprofile" className="modern-profile-icon">
                   <PersonCircle size={24} />

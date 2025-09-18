@@ -15,17 +15,15 @@ const SellerProfileEdit = () => {
         dob: '',
         shopName: '',
         businessAddress: '',
-        image: null, // Stores the File object if a new one is selected
+        image: null,
     });
 
-    const [previewUrl, setPreviewUrl] = useState(null); // Stores the URL for immediate image preview
-    const [isLoading, setIsLoading] = useState(true); // To manage loading state
-
-    // Fetch existing seller data when the component mounts
+    const [previewUrl, setPreviewUrl] = useState(null); 
+    const [isLoading, setIsLoading] = useState(true); 
     useEffect(() => {
         if (!SellerId) {
             console.error("Seller ID not found in localStorage.");
-            navigate('/seller-login'); // Redirect to seller login if no ID
+            navigate('/seller-login'); 
             return;
         }
 
@@ -42,9 +40,9 @@ const SellerProfileEdit = () => {
                         dob: sellerData.dob,
                         shopName: sellerData.shopName,
                         businessAddress: sellerData.businessAddress,
-                        image: null, // Do not set a File object here initially
+                        image: null, 
                     });
-                    // Set the preview URL from the existing image
+                  
                     if (sellerData.image && sellerData.image.filename) {
                         setPreviewUrl(`http://localhost:5000/upload/${sellerData.image.filename}`);
                     }
@@ -53,14 +51,14 @@ const SellerProfileEdit = () => {
                 console.error("Error fetching seller data for editing:", err);
                 alert("Failed to load seller profile data.");
             } finally {
-                setIsLoading(false); // Done loading
+                setIsLoading(false);
             }
         };
 
         fetchSellerData();
     }, [SellerId, navigate]);
 
-    // Handler for changes in text input fields
+
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData(prevFormData => ({
@@ -69,23 +67,21 @@ const SellerProfileEdit = () => {
         }));
     };
 
-    // Handler for file input changes
+   
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
             setFormData(prevFormData => ({
                 ...prevFormData,
-                image: file // Store the actual File object
+                image: file 
             }));
-            setPreviewUrl(URL.createObjectURL(file)); // Create a URL for immediate preview
+            setPreviewUrl(URL.createObjectURL(file)); 
         } else {
             setFormData(prevFormData => ({
                 ...prevFormData,
                 image: null
             }));
-            // If the user clears the file input, you might want to revert the preview
-            // to the original image or clear it completely based on your UX.
-            // For this example, it will just clear the preview.
+        
         }
     };
 
@@ -101,7 +97,6 @@ const SellerProfileEdit = () => {
         submitFormData.append('shopName', formData.shopName);
         submitFormData.append('businessAddress', formData.businessAddress);
 
-        // Only append the image if a new one has been selected
         if (formData.image) {
             submitFormData.append('image', formData.image);
         }
@@ -113,8 +108,8 @@ const SellerProfileEdit = () => {
                 },
             });
             console.log("Seller profile updated successfully:", response.data);
-            alert("Seller profile updated successfully!"); // Give user feedback
-            navigate(`/sellerprofile`); // Navigate back to seller profile page on success
+            alert("Seller profile updated successfully!"); 
+            navigate(`/sellerprofile`); 
         } catch (err) {
             console.error("Failed to update seller profile:", err.response ? err.response.data : err.message);
             alert(`Failed to update seller profile: ${err.response?.data?.message || err.message}`);

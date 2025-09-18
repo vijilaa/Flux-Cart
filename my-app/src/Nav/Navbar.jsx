@@ -53,11 +53,11 @@ function Navbar() {
             </ul>
             <div className="d-flex align-items-center ms-4">
               <Link to={`/profile`}>
-              <button className="btn rounded-pill me-3 icon-btn"> {/* Added a common class for icon buttons */}
-                <FontAwesomeIcon icon={faUserCircle} size="lg" /> {/* Changed to faUserCircle */}
+              <button className="btn rounded-pill me-3 icon-btn"> 
+                <FontAwesomeIcon icon={faUserCircle} size="lg" /> 
               </button>
               </Link>
-              <button className="btn rounded-pill icon-btn" onClick={() => navigate("/vieworder")}> {/* Added common class */}
+              <button className="btn rounded-pill icon-btn" onClick={() => navigate("/vieworder")}> 
                 <FontAwesomeIcon icon={faShoppingCart} size="lg" />
               </button>
 

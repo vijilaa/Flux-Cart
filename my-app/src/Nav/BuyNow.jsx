@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 const BuyNow = () => {
     const navigate = useNavigate()
     const userId = localStorage.getItem('UserId');
-    const location = useLocation(); // Get the location object
+    const location = useLocation(); 
     const { id } = useParams()
-    // State to hold the form data
+    
     const [formData, setFormData] = useState({
         fullName: '',
         address: '',
@@ -19,14 +19,14 @@ const BuyNow = () => {
         expiry: '',
         cvv: '',
         UserId: userId,
-        productIds: id, // Initialize with an empty array for the product IDs
+        productIds: id, 
         quantity: ""
     });
 
-    // State to hold validation errors
+
     const [errors, setErrors] = useState({});
 
-    // On component mount, get the productIds from the location state
+  
     useEffect(() => {
         if (location.state && location.state.productIds) {
             setFormData(prev => ({ ...prev, productIds: location.state.productIds }));
@@ -34,7 +34,6 @@ const BuyNow = () => {
     }, [location.state]);
 
 
-    // A single handler to update form data based on input name
     const handleChange = (e) => {
         const { id, value } = e.target;
 
@@ -51,16 +50,14 @@ const BuyNow = () => {
         }
     };
 
-    // Function to validate the form data
+   
     const validateForm = () => {
         const newErrors = {};
 
-        // Rule 1: Check for empty fields
+    
         if (!formData.fullName) newErrors.fullName = 'Full Name is required.';
         if (!formData.address) newErrors.address = 'Shipping Address is required.';
         if (!formData.city) newErrors.city = 'City is required.';
-
-        // Rule 2: Check for specific formats (simple examples)
         if (!/^\d{6}$/.test(formData.zip)) {
             newErrors.zip = 'ZIP Code must be 6 digits.';
         }
@@ -94,11 +91,11 @@ const BuyNow = () => {
             .catch((error) => {
                 console.log(error);
             });
-        // Re-run validation on submit
+     
         const validationErrors = validateForm();
         setErrors(validationErrors);
 
-        // If there are no errors, proceed with the submission
+    
         if (Object.keys(validationErrors).length === 0) {
             if (!userId) {
                 alert("You must be logged in to make a purchase.");
@@ -128,7 +125,6 @@ const BuyNow = () => {
                 </div>
 
                 <form className="checkout-form" onSubmit={handleSubmit} noValidate>
-                    {/* --- Shipping Information Section --- */}
                     <div className="form-section">
                         <h4 className="section-title">Shipping Information</h4>
                         <div className="form-group">
@@ -191,7 +187,7 @@ const BuyNow = () => {
                                 id="quantity"
                                 className="form-input"
                                 placeholder="1"
-                                min="1" // Ensure minimum quantity is 1
+                                min="1" 
                                 value={formData.quantity}
                                 onChange={handleChange}
                             />

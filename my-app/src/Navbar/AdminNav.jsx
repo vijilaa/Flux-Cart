@@ -19,17 +19,14 @@ function AdminNav() {
                 <Container>
                     <Navbar.Toggle aria-controls="mynavbar" />
                     <Navbar.Collapse id="mynavbar">
-                        {/* The main Nav now holds the two new groups */}
                         <Nav className="modern-nav-links">
-                            {/* Left-aligned content */}
                             <div className="modern-nav-content-left">
-                                <Nav.Link as={Link} to="/side" className="text-dark">Home</Nav.Link>
+                                <Nav.Link as={Link} to="/adside" className="text-dark">Home</Nav.Link>
                                 <Nav.Link as={Link} to="/Seller-about" className="text-dark">About</Nav.Link>
                                 <Nav.Link as={Link} to="/Service-seller" className="text-dark">Services</Nav.Link>
                                 <Nav.Link as={Link} to="/seller-contact" className="text-dark">Contact</Nav.Link>
                             </div>
 
-                            {/* Right-aligned content */}
                             <div className="modern-nav-actions-right">
                                 <button
                                     className="btn rounded-pill modern-logout-btn"

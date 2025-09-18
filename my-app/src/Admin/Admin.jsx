@@ -12,8 +12,8 @@ function Admin() {
     password: '',
   });
   let adminemail = "vijila331@gmail.com"
-  let AdminPassword = "qwertyuiop"
-  const [error, setError] = useState(''); // Changed to a single string for general error
+  let AdminPassword = "helloitsme"
+  const [error, setError] = useState(''); 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -22,7 +22,6 @@ function Admin() {
   };
 
   const validateForm = () => {
-    // Basic client-side validation
     if (!formData.email.trim()) {
       setError('Email is required.');
       return false;
@@ -33,11 +32,11 @@ function Admin() {
     if (!formData.password.trim()) {
       setError('Password is required.');
       return false;
-    } else if (formData.password.length < 6) { // Assuming a minimum password length
+    } else if (formData.password.length < 6) {
       setError('Password must be at least 6 characters.');
       return false;
     }
-    setError(''); // Clear error if validation passes
+    setError('');
     return true;
   };
 
@@ -48,29 +47,18 @@ function Admin() {
     }
     if (formData.email === adminemail && formData.password === AdminPassword) {
       navigate('/adminDash');
-
-
     }
-    else{
+    else {
       alert("invalid email or password")
     }
     setLoading(true);
-
-
-
-
-    console.log('Admin login successful:');
-
-
-
-
-  };
+     console.log('Admin login successful:');
+ };
 
   return (
     <div className="admin-login-container">
       <div className="admin-login-card">
         <div className="admin-login-left">
-          {/* Similar illustration to your Sig page */}
           <img
             src={AdminPhoto}
             alt="Admin Login Illustration"
@@ -93,8 +81,6 @@ function Admin() {
                   required
                 />
               </div>
-              {/* Error message for email - now handled by general 'error' state */}
-
               <div className="form-field">
                 <FaLock />
                 <input
@@ -106,10 +92,9 @@ function Admin() {
                   required
                 />
               </div>
-              {/* Error message for password - now handled by general 'error' state */}
             </div>
 
-            {error && <p className="error-text">{error}</p>} {/* Display general error message */}
+            {error && <p className="error-text">{error}</p>}
 
             <button type="submit" className="submit-btn" disabled={loading}>
               {loading ? 'Logging In...' : 'Login'}

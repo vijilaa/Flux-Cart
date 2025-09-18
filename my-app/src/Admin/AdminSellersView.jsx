@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AdminSidebar from './AdminSidebar'; // Make sure the path is correct
-import './AdminSellersView.css'; // Import the new CSS file
+import AdminSidebar from './AdminSidebar'; 
+import './AdminSellersView.css';
 
 const AdminSellersView = () => {
   const [sellers, setSellers] = useState([]);
@@ -29,7 +29,6 @@ const AdminSellersView = () => {
   };
 
   if (loading) {
-    // You can add a more sophisticated spinner here if you like
     return <div className="seller-layout-container"><p>Loading seller details...</p></div>;
   }
 
@@ -45,7 +44,7 @@ const AdminSellersView = () => {
             <table className="seller-table">
               <thead>
                 <tr>
-                  <th>Image</th> {/* This header is for the seller's image */}
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone Number</th>
@@ -63,7 +62,7 @@ const AdminSellersView = () => {
                       <img
                         src={`http://localhost:5000/upload/${seller.image.filename}`}
                         alt={seller.name}
-                        className="user-profile-image" // Add a class for styling
+                        className="user-profile-image" 
                       />
 
 </td>
@@ -79,7 +78,7 @@ const AdminSellersView = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="8" className="no-data-message">No sellers found.</td> {/* Corrected colspan */}
+                    <td colSpan="8" className="no-data-message">No sellers found.</td> 
                   </tr>
                 )}
               </tbody>

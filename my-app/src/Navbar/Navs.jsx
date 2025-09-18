@@ -13,18 +13,13 @@ function Navs() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check login status from localStorage on component mount
     const storedLogin = localStorage.getItem('isLoggedIn');
     setIsLoggedIn(storedLogin === 'true');
-
-    // Listen for changes in localStorage to sync across tabs
     const handleStorageChange = () => {
       const updatedLoginStatus = localStorage.getItem('isLoggedIn');
       setIsLoggedIn(updatedLoginStatus === 'true');
     };
     window.addEventListener('storage', handleStorageChange);
-
-    // Cleanup listener on component unmount
     return () => {
       window.removeEventListener('storage', handleStorageChange);
     };
@@ -66,12 +61,12 @@ function Navs() {
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 {isLoggedIn ? (
-                  // If logged in, navigate directly to home
+            
                   <button className="nav-link nav-btn" onClick={() => navigate('/home')}>
                     Home
                   </button>
                 ) : (
-                  // If not logged in, clicking this button opens the login prompt modal
+                 
                   <button
                     className="nav-link nav-btn"
                     data-bs-toggle="modal"

@@ -11,7 +11,6 @@ import About from './about/About';
 import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import Profile from './Profile/Profile';
 import Navbar from './Nav/Navbar';
-import Seller from './Seller/Seller';
 import Log from './Seller/Log';
 import Sig from './Seller/Sig';
 import For from './Seller/For';
@@ -46,11 +45,10 @@ import AdminViewContact from './Admin/AdminViewContact';
 
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        {/* General Pages */}
+        {/* -------------------- USER ROUTES -------------------- */}
         <Route path="/" element={<><Navs /><Body /><Footer /></>} />
         <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
         <Route path="/sign" element={<><Navs /><Signup /><Footer /></>} />
@@ -58,57 +56,61 @@ function App() {
         <Route path="/forgot" element={<><Navs /><Forgot /><Footer /></>} />
         <Route path="/about" element={<><Navs /><About /><Footer /></>} />
         <Route path="/User-about" element={<><Navbar /><About /><Footer /></>} />
-        <Route path="/Seller-about" element={<><Headbar /><About /><Footer /></>} />
-        <Route path='/cat' element={<><CategoryPage /></>}></Route>
         <Route path="/profile" element={<><Navbar /><Profile /><Footer /></>} />
         <Route path="/edit-profile/:id" element={<><Navbar /><EditProfile /><Footer /></>} />
         <Route path="/category/:name" element={<><Navbar /><CategoryPage /><Footer /></>} />
+        <Route path="/cat" element={<><CategoryPage /></>} />
         <Route path="/Service" element={<><Navbar /><Service /><Footer /></>} />
-        <Route path="/Service-seller" element={<><Headbar /><Service /><Footer /></>} />
-        <Route path='/Navs' element={<><Navbar></Navbar></>}></Route>
-        <Route path='phone' element={<><Navs /><Contactt></Contactt><Footer /></>}></Route>
-        <Route path='phone-contact' element={<><Navbar /><Contactt></Contactt><Footer /></>}></Route>
-        <Route path='phone-con' element={<><Navbar /><Contactt></Contactt><Footer /></>}></Route>
+        <Route path="/phone" element={<><Navs /><Contactt /><Footer /></>} />
+        <Route path="/phone-contact" element={<><Navbar /><Contactt /><Footer /></>} />
+        <Route path="/phone-con" element={<><Navbar /><Contactt /><Footer /></>} />
+        <Route path="/Navs" element={<Navbar />} />
+
+        {/* Product Views & Orders */}
+        <Route path="/ViewbyId/:id" element={<><Navbar /><HomeId /><Footer /></>} />
+        <Route path="/vieworder" element={<><Navbar /><AddtoCart /><Footer /></>} />
+        <Route path="/Buynow/:id" element={<><Navbar /><BuyNow /><Footer /></>} />
+        <Route path="/Buynow" element={<><Navbar /><BuyTotalProduct /><Footer /></>} />
+        <Route path="/Buydetails" element={<><Navbar /><BuyNowDetails /><Footer /></>} />
+
+        {/* Cart Footer Example */}
+        <Route path="/Cartfooter" element={<CartFooter />} />
 
 
-        {/* Seller Auth Pages */}
-        <Route path="/Seller" element={<Seller />} />
+        {/* -------------------- SELLER ROUTES -------------------- */}
+        {/* Seller Authentication */}
         <Route path="/logo" element={<><Navs /><Log /><Footer /></>} />
         <Route path="/sig" element={<><Navs /><Sig /><Footer /></>} />
         <Route path="/For" element={<><Navbar /><For /><Footer /></>} />
+        <Route path="/Seller-about" element={<><Headbar /><About /><Footer /></>} />
 
-        {/* Seller Sidebar with product management */}
-        <Route path="/side" element={<>
-          <Headbar></Headbar> <SellerSidebar /> <Footer /> </>} />
+        {/* Seller Dashboard & Sidebar */}
+        <Route path="/Dashboard" element={<><Headbar /><SellerDashboard /></>} />
+        <Route path="/side" element={<><Headbar /><SellerSidebar /><Footer /></>} />
+        <Route path="/add" element={<><Headbar /><SellerAdd /><Footer /></>} />
+        <Route path="/view" element={<><Headbar /><SellerViewPage /></>} />
+        <Route path="/order" element={<><Headbar /><SellerOrder /></>} />
+        <Route path="/ProductEdit/:id" element={<><Headbar /><SellerProductEdit /><Footer /></>} />
+        <Route path="/seller-contact" element={<><Headbar /><Contactt /></>} />
+        <Route path="/sellerprofile" element={<><Headbar /><SellerProfile /><Footer /></>} />
+        <Route path="/edit-seller/:id" element={<><Headbar /><SellerProfileEdit /><Footer /></>} />
+        <Route path="/Service-seller" element={<><Headbar /><Service /><Footer /></>} />
+        <Route path="/header" element={<Headbar />} />
 
-        {/* Add and View Products */}
-        <Route path="/add" element={<><Headbar></Headbar><SellerAdd /><Footer></Footer></>} />
-        <Route
-          path="/view" element={<><Headbar></Headbar><SellerViewPage /></>} />
-        <Route path='/order' element={<><Headbar></Headbar><SellerOrder></SellerOrder></>}></Route>
-        <Route path='/Dashboard' element={<><Headbar></Headbar><SellerDashboard></SellerDashboard></>}></Route>
-        <Route path='/seller-contact' element={<><Headbar></Headbar><Contactt /></>}></Route>
 
-        <Route path='/adminlg' element={<><Navs/><Admin></Admin><Footer/></>}></Route>
-        <Route path='/adside' element={<><AdminNav /><AdminSidebar></AdminSidebar><Footer></Footer></>}></Route>
-        <Route path='/ProductEdit/:id' element={<><Headbar /><SellerProductEdit></SellerProductEdit><Footer /></>}></Route>
-        <Route path='/ViewbyId/:id' element={<><Navbar></Navbar><HomeId></HomeId><Footer /></>}></Route>
-        <Route path='/vieworder' element={<><Navbar /><AddtoCart></AddtoCart><Footer /></>}></Route>
-        <Route path='/Buynow/:id' element={<><Navbar /><BuyNow></BuyNow><Footer /></>}></Route>
-        <Route path='/Buynow' element={<><Navbar /><BuyTotalProduct /><Footer /></>}></Route>
-        <Route path='/Cartfooter' element={<><CartFooter></CartFooter></>}></Route>
-        <Route path='/header' element={<><Headbar></Headbar></>}></Route>
-        <Route path='/ProductView' element={<><AdminNav /><AdmiinProductView></AdmiinProductView></>}></Route>
-        <Route path='/adminDash' element={<><AdminNav /><AdminDashboard /></>}></Route>
-        <Route path='/sellers' element={<><AdminNav /><AdminSellerView /></>}></Route>
-        <Route path='/users' element={<><AdminNav /><AdminUsersView></AdminUsersView></>}></Route>
+        {/* -------------------- ADMIN ROUTES -------------------- */}
+        {/* Admin Login and Sidebar */}
+        <Route path="/adminlg" element={<><Navs /><Admin /><Footer /></>} />
+        <Route path="/adside" element={<><AdminNav /><AdminSidebar /><Footer /></>} />
+        <Route path="/Admin-nav" element={<AdminNav />} />
 
-        <Route path='/Buydetails' element={<><Navbar /><BuyNowDetails /><Footer /></>}></Route>
-        <Route path='/sellerprofile' element={<><Headbar /><SellerProfile /><Footer /></>}></Route>
-        <Route path='/edit-seller/:id' element={<><Headbar /><SellerProfileEdit /><Footer /></>}></Route>
-        <Route path='/newregistration' element={<><AdminNav /><AdminNewRegistration /></>}></Route>
-        <Route path='/Admin-nav' element={<><AdminNav/></>}></Route>
-        <Route path='/admin-view'  element={<><AdminNav/><AdminViewContact/><Footer/></>}></Route>
+        {/* Admin Dashboards & Views */}
+        <Route path="/adminDash" element={<><AdminNav /><AdminDashboard /></>} />
+        <Route path="/ProductView" element={<><AdminNav /><AdmiinProductView /></>} />
+        <Route path="/sellers" element={<><AdminNav /><AdminSellerView /></>} />
+        <Route path="/users" element={<><AdminNav /><AdminUsersView /></>} />
+        <Route path="/admin-view" element={<><AdminNav /><AdminViewContact /><Footer /></>} />
+        <Route path="/newregistration" element={<><AdminNav /><AdminNewRegistration /></>} />
       </Routes>
     </BrowserRouter>
   );

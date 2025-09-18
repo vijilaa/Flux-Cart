@@ -39,7 +39,6 @@ const handleChange = (e) => {
   }
 
   if (name === "number") {
-    // Only numbers (digits)
     filteredValue = value.replace(/[^0-9]/g, '');
   }
 
@@ -169,7 +168,7 @@ const handleChange = (e) => {
           <div className='user-signup-blur-bg'></div>
           <h4 className="user-signup-h4 mt-3">SIGNUP</h4>
           <div className="image-upload-group">
-            {/* Display a placeholder if no image is selected */}
+     
             <img src={preview || "https://via.placeholder.com/160"} alt="" />
             <label htmlFor="file-upload" className="custom-file-input">
               Choose Image

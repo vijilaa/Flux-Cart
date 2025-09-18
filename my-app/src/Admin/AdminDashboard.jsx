@@ -1,5 +1,5 @@
 import React from 'react';
-import './AdminDashboard.css'; // We will create this simple CSS file next
+import './AdminDashboard.css'; 
 import { FaBoxOpen, FaUsers, FaStore, FaClipboardList } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -66,10 +66,8 @@ const AdminDashboard = () => {
         Welcome! Here is a summary of your application's status.
       </p>
 
-      {/* Grid container for the stat cards */}
+ 
       <div className="dashboard-grid">
-
-        {/* Card 1: Total Products */}
         <div className="dashboard-card">
           <div className="card-icon products">
             <FaBoxOpen />
@@ -79,8 +77,6 @@ const AdminDashboard = () => {
             <h3 className="card-value">{count}</h3>
           </div>
         </div>
-
-        {/* Card 2: Total Users */}
         <div className="dashboard-card">
           <div className="card-icon users">
             <FaUsers />
@@ -91,7 +87,6 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Card 3: Total Sellers */}
         <div className="dashboard-card">
           <div className="card-icon sellers">
             <FaStore />
@@ -102,7 +97,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Card 4: Orders */}
+
         <div className="dashboard-card">
           <div className="card-icon orders">
             <FaClipboardList />

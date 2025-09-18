@@ -22,7 +22,7 @@ const Forgot = () => {
     const errors = {};
     let isValid = true;
 
-    if (!formData.email) { // Add validation for email
+    if (!formData.email) { 
       errors.email = "Email is required";
       isValid = false;
     }
@@ -46,7 +46,7 @@ const Forgot = () => {
     setFormError(errors);
 
     if (isValid) {
-      // Send formData in the axios.post request
+
       axios.post("http://localhost:5000/forgot", {
         email: formData.email,
         password: formData.password
@@ -54,7 +54,6 @@ const Forgot = () => {
       .then((result) => {
         alert("Password has been updated successfully!");
         navigate("/log");
-        // Clear the form
         setFormData({
           email: '',
           password: '',
@@ -63,7 +62,7 @@ const Forgot = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("Failed to update password. Please try again."); // Provide user feedback
+        alert("Failed to update password. Please try again."); 
       });
     }
   };
@@ -82,7 +81,7 @@ const Forgot = () => {
               value={formData.email}
               onChange={handleChange}
             />
-            {formError.email && <p className="error">{formError.email}</p>} {/* Display email error */}
+            {formError.email && <p className="error">{formError.email}</p>} 
             <input
               type="password"
               className="form-control input-line mt-3"

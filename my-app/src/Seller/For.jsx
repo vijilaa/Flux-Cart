@@ -51,7 +51,7 @@ const For = () => {
     setFormError(errors);
 
    if (isValid) {
-      // Send formData in the axios.post request
+
       axios.post("http://localhost:5000/forgotseller", {
         email: formData.email,
         password: formData.password
@@ -59,7 +59,6 @@ const For = () => {
       .then((result) => {
         alert("Password has been updated successfully!");
         navigate("/logo");
-        // Clear the form
         setFormData({
           email: '',
           password: '',
@@ -68,7 +67,7 @@ const For = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("Failed to update password. Please try again."); // Provide user feedback
+        alert("Failed to update password. Please try again."); 
       });
     }
   };

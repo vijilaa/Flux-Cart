@@ -1,22 +1,19 @@
-/* Overall Layout */
 .user-container {
-    display: flex; /* Use flexbox for sidebar and main content */
-    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex;
+    min-height: 100vh;
     background-color: #f4f7f6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Main Content Area */
 .user-container > div:last-child {
-    flex-grow: 1; /* Allows the content to take up the remaining space */
+    flex-grow: 1;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin: 20px; /* Adjust margin as needed */
-    max-width: calc(100% - 260px); /* Account for sidebar width + margins */
+    margin: 20px;
+    max-width: calc(100% - 260px);
 }
-
 
 .user-header {
     font-size: 2.5em;
@@ -27,7 +24,6 @@
     padding-bottom: 15px;
 }
 
-/* Loading and Error Messages */
 .user-container p {
     text-align: center;
     font-size: 1.2em;
@@ -46,7 +42,6 @@
     font-size: 1.3em;
 }
 
-/* User Table */
 .user-table {
     width: 100%;
     border-collapse: collapse;
@@ -54,7 +49,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
     border-radius: 8px;
-    overflow: hidden; /* Ensures rounded corners apply to children */
+    overflow: hidden;
 }
 
 .user-table th,
@@ -65,7 +60,7 @@
 }
 
 .user-table thead th {
-    background-color: #a5bbd3; /* Primary color for header */
+    background-color: #a5bbd3;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -73,26 +68,24 @@
 }
 
 .user-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Zebra striping for readability */
+    background-color: #f9f9f9;
 }
 
 .user-table tbody tr:hover {
-    background-color: #f0f8ff; /* Highlight row on hover */
+    background-color: #f0f8ff;
     cursor: pointer;
 }
 
-/* User Profile Image */
 .user-profile-image {
-    width: 50px; /* Fixed width for image */
-    height: 50px; /* Fixed height for image */
-    border-radius: 50%; /* Make it circular */
-    object-fit: cover; /* Cover the area, cropping if necessary */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
     border: 2px solid #e0e0e0;
-    vertical-align: middle; /* Align with text */
+    vertical-align: middle;
     margin-right: 10px;
 }
 
-/* No Data Message */
 .no-data-message {
     text-align: center;
     font-style: italic;
@@ -101,12 +94,11 @@
     font-size: 1.1em;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 992px) {
     .user-container > div:last-child {
         margin: 15px;
         padding: 25px;
-        max-width: calc(100% - 20px); /* Adjust max-width for smaller screens */
+        max-width: calc(100% - 20px);
     }
 
     .user-header {
@@ -128,19 +120,18 @@
 
 @media (max-width: 768px) {
     .user-container {
-        flex-direction: column; /* Stack sidebar and content vertically */
+        flex-direction: column;
     }
 
     .user-container > div:last-child {
         margin: 10px;
         padding: 20px;
-        max-width: unset; /* Remove max-width for full flexibility */
+        max-width: unset;
     }
 
-    /* Hide some columns for better readability on small screens */
-    .user-table thead tr th:nth-child(4), /* Phone Number */
+    .user-table thead tr th:nth-child(4),
     .user-table tbody tr td:nth-child(4),
-    .user-table thead tr th:nth-child(5), /* Password */
+    .user-table thead tr th:nth-child(5),
     .user-table tbody tr td:nth-child(5) {
         display: none;
     }
@@ -152,8 +143,8 @@
 
     .user-table {
         display: block;
-        overflow-x: auto; /* Enable horizontal scrolling for tables */
-        white-space: nowrap; /* Prevent text wrapping */
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .user-table thead, .user-table tbody, .user-table th, .user-table td, .user-table tr {
@@ -180,7 +171,7 @@
         position: relative;
         padding-left: 50%;
         text-align: right;
-        flex: 1 0 100%; /* Each cell takes full width */
+        flex: 1 0 100%;
     }
 
     .user-table td:before {
@@ -197,12 +188,9 @@
     .user-table td:nth-of-type(1):before { content: "Image"; }
     .user-table td:nth-of-type(2):before { content: "Name"; }
     .user-table td:nth-of-type(3):before { content: "Email"; }
-    /* You would add these if phone/password were not hidden */
-    /* .user-table td:nth-of-type(4):before { content: "Phone Number"; } */
-    /* .user-table td:nth-of-type(5):before { content: "Password"; } */
 
     .user-profile-image {
-        margin: 0 auto; /* Center image when stacked */
+        margin: 0 auto;
         display: block;
     }
 }
@@ -222,6 +210,6 @@
     }
 
     .user-table td:before {
-        width: 40%; /* Adjust label width for very small screens */
+        width: 40%;
     }
 }

@@ -2,14 +2,13 @@ import React from 'react'
 import './Profile.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useParams, useNavigate } from 'react-router-dom' // Import useNavigate
+import { useParams, useNavigate } from 'react-router-dom' 
 
 const Profile = () => {
     const [user, setUser] = useState(null);
     const { id } = useParams();
     const UserId = localStorage.getItem("UserId")
-    const navigate = useNavigate(); // Initialize useNavigate
-
+    const navigate = useNavigate(); 
     useEffect(() => {
         if (UserId) {
             axios.get(`http://localhost:5000/useone/${UserId}`)
@@ -26,9 +25,8 @@ const Profile = () => {
     const handleUpdateProfile = () => {
 
 
-        // You can navigate to an update page, e.g.:
+     
         navigate(`/edit-profile/${UserId}`);
-        // Or you could open a modal for editing
         console.log("Update Profile button clicked!");
     };
 

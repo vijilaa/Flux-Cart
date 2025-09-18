@@ -1,87 +1,65 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./AdminProductView.css"; // We will create this CSS file next
+import "./AdminProductView.css";
 import AdminSidebar from "./AdminSidebar";
 
 const AdminProductView = () => {
   const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null); // State to handle errors
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch all products when the component loads
     axios.get("http://localhost:5000/allproduct")
-      .then(res => {
-        if (Array.isArray(res.data.data)) {
-          setProducts(res.data.data);
-        } else {
-          setError("The fetched data is not an array.");
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-        setError("Failed to fetch products. Please check the console for more details.");
-      });
-  }, []); // The empty dependency array means this runs once on component mount
+      .then(res => setProducts(Array.isArray(res.data.data) ? res.data.data : []))
+      .catch(() => setError("Failed to fetch products."));
+  }, []);
 
   return (
     <div className="seller-dashboard-layout">
-      <AdminSidebar/>
+      <AdminSidebar />
       <div className="container mt-4">
-        <h2 className="text-center mb-4 admin-product-header">All Products</h2>
-        
-        {/* --- Error Handling --- */}
+        <h2 className="text-center mb-4">All Products</h2>
+
         {error && <div className="alert alert-danger">{error}</div>}
 
-        {/* --- Product Table --- */}
-        {!error && (
-          <div className="table-responsive">
-            <table className="table table-hover admin-product-table">
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col">Image</th>
-                  <th scope="col">Product Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Stock</th>
-                  <th scope="col">Status</th>
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <thead className="thead-dark">
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.length ? products.map(product => (
+                <tr key={product._id}>
+                  <td>
+                    <img
+                      src={`http://localhost:5000/upload/${product.image?.filename}`}
+                      className="admin-product-img"
+                      alt={product.name}
+                    />
+                  </td>
+                  <td>{product.name}</td>
+                  <td>${product.price.toFixed(2)}</td>
+                  <td>{product.stock}</td>
+                  <td>
+                    <span className={`badge ${product.stock > 0 ? "badge-success" : "badge-danger"}`}>
+                      {product.stock > 0 ? "In Stock" : "Sold Out"}
+                    </span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {products.length > 0 ? (
-                  products.map((product) => (
-                    <tr key={product._id}>
-                      <td>
-                        <img
-                          src={`http://localhost:5000/upload/${product.image?.filename}`}
-                          className="admin-product-img"
-                          alt={product.name}
-                        />
-                      </td>
-                      <td className="product-name-cell">{product.name}</td>
-                      <td>${product.price.toFixed(2)}</td>
-                      <td>{product.stock}</td>
-                      <td>
-                        {/* --- Stock Status Indicator --- */}
-                        {product.stock > 0 ? (
-                          <span className="badge badge-success">In Stock</span>
-                        ) : (
-                          <span className="badge badge-danger">Sold Out</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  // --- Shows if no products are found ---
-                  <tr>
-                    <td colSpan="5" className="text-center">
-                      No products found.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
+              )) : (
+                <tr>
+                  <td colSpan="5" className="text-center">No products found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

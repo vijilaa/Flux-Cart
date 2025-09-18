@@ -14,11 +14,11 @@ function Sig() {
   const [preview, setImagePreview] = useState("");
   const [error, setError] = useState({});
 
-  // Function to get today's date in YYYY-MM-DD format
+  
   const getTodayDate = () => {
     const today = new Date();
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
@@ -29,16 +29,16 @@ function Sig() {
 
     // Input restrictions by field
     if (name === "name" || name === "shopName") {
-      // Allow only letters and spaces
+  
       filteredValue = value.replace(/[^A-Za-z\s]/g, '');
     } else if (name === "number") {
-      // Allow only digits and limit to 10 characters
+     
       filteredValue = value.replace(/[^0-9]/g, '');
       if (filteredValue.length > 10) {
         filteredValue = filteredValue.slice(0, 10);
       }
     } else if (name === "gstNumber") {
-      // Convert to uppercase, allow alphanumeric only, and limit to 15 characters
+
       filteredValue = value.toUpperCase().replace(/[^A-Z0-9]/g, '');
       if (filteredValue.length > 15) {
         filteredValue = filteredValue.slice(0, 15);
@@ -82,7 +82,7 @@ function Sig() {
     if (!formData.number.trim()) {
       newErrors.number = 'Phone number is required';
       isValid = false;
-    } else if (!/^\d{10}$/.test(formData.number)) { // Exactly 10 digits
+    } else if (!/^\d{10}$/.test(formData.number)) { 
       newErrors.number = 'Phone number must be exactly 10 digits';
       isValid = false;
     }
@@ -95,8 +95,8 @@ function Sig() {
       isValid = false;
     }
 
-    // GST Number Validation (optional if not mandatory, but good to validate format and length)
-    if (formData.gstNumber.trim()) { // Only validate if a GST number is entered
+  
+    if (formData.gstNumber.trim()) {
         if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(formData.gstNumber)) {
             newErrors.gstNumber = 'Invalid GST Number format (e.g., 27ABCDE1234F1Z5)';
             isValid = false;
@@ -115,7 +115,7 @@ function Sig() {
     e.preventDefault();
 
     if (!validateForm()) {
-      // If validation fails, errors are already set, so just return
+   
       return;
     }
 
@@ -125,7 +125,7 @@ function Sig() {
     data.append('email', formData.email);
     data.append('password', formData.password);
     data.append('dob', formData.dob);
-    data.append('gender', formData.gender); // Added gender, though not in form fields
+    data.append('gender', formData.gender); 
     data.append('shopName', formData.shopName);
     data.append('gstNumber', formData.gstNumber);
     data.append('businessAddress', formData.businessAddress);
@@ -168,7 +168,7 @@ function Sig() {
             <h2>Seller Registration</h2>
             <div className="form-grid">
               <div className="image-upload-group">
-                {/* Display a placeholder if no image is selected */}
+         
                 <img src={preview || "https://via.placeholder.com/160"} alt="Profile Preview" />
                 <label htmlFor="file-upload" className="custom-file-input">
                   Choose Image
@@ -191,7 +191,7 @@ function Sig() {
                     placeholder="Full Name"
                     value={formData.name}
                     onChange={handleChange}
-                    maxLength="50" // Optional: max length for name
+                    maxLength="50" 
                   />
                 </div>
                 {error.name && <p className="error-text">{error.name}</p>}
@@ -216,8 +216,8 @@ function Sig() {
                     placeholder="Phone Number (10 digits)"
                     value={formData.number}
                     onChange={handleChange}
-                    maxLength="10" // HTML max length
-                    pattern="\d{10}" // HTML pattern for 10 digits
+                    maxLength="10" 
+                    pattern="\d{10}"
                     inputMode="numeric"
                   />
                 </div>
@@ -231,7 +231,7 @@ function Sig() {
                     placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
-                    minLength="6" // HTML min length
+                    minLength="6" 
                   />
                 </div>
                 {error.password && <p className="error-text">{error.password}</p>}
@@ -245,7 +245,7 @@ function Sig() {
                     name="dob"
                     value={formData.dob}
                     onChange={handleChange}
-                    max={getTodayDate()} // This is the key change!
+                    max={getTodayDate()} 
                   />
                 </div>
 
@@ -257,7 +257,7 @@ function Sig() {
                     placeholder="Shop Name"
                     value={formData.shopName}
                     onChange={handleChange}
-                    maxLength="100" // Optional: max length for shop name
+                    maxLength="100" 
                   />
                 </div>
 
@@ -269,9 +269,9 @@ function Sig() {
                     placeholder="GST Number (15 alphanumeric)"
                     value={formData.gstNumber}
                     onChange={handleChange}
-                    maxLength="15" // HTML max length
-                    pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" // Specific GST pattern
-                    inputMode="text" // Keep as text as it's alphanumeric
+                    maxLength="15" 
+                    pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$" 
+                    inputMode="text" 
                   />
                 </div>
                 {error.gstNumber && <p className="error-text">{error.gstNumber}</p>}

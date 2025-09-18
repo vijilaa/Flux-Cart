@@ -1,19 +1,19 @@
-/* General Layout */
+
 .seller-dashboard-layout {
-    display: flex; /* Use flexbox for sidebar and main content */
-    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex; 
+    min-height: 100vh;
     background-color: #f4f7f6;
 }
 
-/* Admin Registration Container */
+
 .admin-registration-container {
-    flex-grow: 1; /* Allows the content to take up the remaining space */
+    flex-grow: 1;
     padding: 30px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin: 20px; /* Adjust margin as needed */
-    max-width: calc(100% - 260px); /* Account for sidebar width + margins */
+    margin: 20px;
+    max-width: calc(100% - 260px);
 }
 
 .admin-registration-container h2 {
@@ -25,7 +25,6 @@
     text-align: center;
 }
 
-/* Loading and Error Messages */
 .admin-registration-container .error-message {
     color: #d9534f;
     background-color: #fdf7f7;
@@ -36,14 +35,13 @@
     font-weight: bold;
 }
 
-/* Seller List */
 .seller-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 25px;
 }
 
-/* Seller Card */
+
 .seller-card {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -63,9 +61,9 @@
 
 .seller-card h3 {
     font-size: 1.6em;
-    color: #007bff; /* Primary brand color */
+    color: #007bff; 
     margin-bottom: 10px;
-    word-break: break-word; /* Prevents long names from overflowing */
+    word-break: break-word; 
 }
 
 .seller-card p {
@@ -79,12 +77,12 @@
     color: #333;
 }
 
-/* Seller Actions (Buttons) */
+
 .seller-actions {
     margin-top: 20px;
     display: flex;
-    gap: 10px; /* Space between buttons */
-    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px; 
+    justify-content: flex-end; 
 }
 
 .seller-actions button {
@@ -102,7 +100,7 @@
 }
 
 .accept-button {
-    background-color: #28a745; /* Green for accept */
+    background-color: #28a745; 
     color: white;
 }
 
@@ -112,7 +110,7 @@
 }
 
 .reject-button {
-    background-color: #dc3545; /* Red for reject */
+    background-color: #dc3545;
     color: white;
 }
 
@@ -121,7 +119,7 @@
     box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
 }
 
-/* Message for no pending registrations */
+
 .admin-registration-container p {
     text-align: center;
     font-size: 1.1em;
@@ -133,12 +131,11 @@
     border-radius: 8px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .admin-registration-container {
         margin: 10px;
         padding: 20px;
-        max-width: unset; /* Remove max-width on smaller screens */
+        max-width: unset; 
     }
 
     .admin-registration-container h2 {
@@ -147,11 +144,11 @@
     }
 
     .seller-list {
-        grid-template-columns: 1fr; /* Stack cards on very small screens */
+        grid-template-columns: 1fr; 
     }
 
     .seller-actions {
-        flex-direction: column; /* Stack buttons vertically */
+        flex-direction: column; 
         align-items: stretch;
     }
 
