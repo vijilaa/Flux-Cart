@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AdminSidebar.css';
 import { Link, useLocation } from 'react-router-dom';
-import { FaUsers, FaStore, FaBoxOpen, FaUserPlus, FaCog,  FaTachometerAlt } from 'react-icons/fa';
+import { FaUsers, FaStore, FaBoxOpen, FaUserPlus, FaCog, FaTachometerAlt } from 'react-icons/fa';
 const AdminSidebar = () => {
   const location = useLocation();
   const [activePage, setActivePage] = useState(location.pathname);
@@ -10,7 +10,7 @@ const AdminSidebar = () => {
       <div className="sidebar">
         <h2 className="sidebar-title">Admin Panel</h2>
         <ul>
-           <Link to={"/admindash"} className="sidebar-link">
+          <Link to={"/admindash"} className="sidebar-link">
             <li
               className={activePage === '/admindash' ? 'active' : ''}
               onClick={() => setActivePage('/admindash')}
@@ -52,7 +52,16 @@ const AdminSidebar = () => {
               onClick={() => setActivePage('/newregistration')}
             >
               <FaUserPlus className="sidebar-icon" />
-              <span>Registration</span>
+              <span>New Registration</span>
+            </li>
+          </Link>
+              <Link to={'/admin-view'} className="sidebar-link">
+            <li
+              className={activePage === '/admin-view' ? 'active' : ''}
+              onClick={() => setActivePage('/admin-view')}
+            >
+              <FaUserPlus className="sidebar-icon" />
+              <span>View Feedback</span>
             </li>
           </Link>
         </ul>

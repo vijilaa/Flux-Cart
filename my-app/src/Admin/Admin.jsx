@@ -3,7 +3,7 @@ import './Admin.css'; // This will be our new CSS file
 import { MdOutlineMail } from 'react-icons/md';
 import { FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import AdminPhoto from '../assets/admin.jpg'
 
 function Admin() {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ function Admin() {
         <div className="admin-login-left">
           {/* Similar illustration to your Sig page */}
           <img
-            src=""
+            src={AdminPhoto}
             alt="Admin Login Illustration"
           />
         </div>

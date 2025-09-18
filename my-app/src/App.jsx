@@ -41,6 +41,7 @@ import SellerProfile from './Seller/SellerProfile';
 import SellerProfileEdit from './Seller/SellerProfileEdit';
 import AdminNewRegistration from './Admin/AdminNewRegistration';
 import AdminNav from './Navbar/AdminNav';
+import AdminViewContact from './Admin/AdminViewContact';
 
 
 
@@ -107,6 +108,7 @@ function App() {
         <Route path='/edit-seller/:id' element={<><Headbar /><SellerProfileEdit /><Footer /></>}></Route>
         <Route path='/newregistration' element={<><AdminNav /><AdminNewRegistration /></>}></Route>
         <Route path='/Admin-nav' element={<><AdminNav/></>}></Route>
+        <Route path='/admin-view'  element={<><AdminNav/><AdminViewContact/><Footer/></>}></Route>
       </Routes>
     </BrowserRouter>
   );
