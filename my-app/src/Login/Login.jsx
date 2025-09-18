@@ -108,7 +108,7 @@ console.log(user);
                 <div className='user-login-input'>
                   <input placeholder="Password"
                     className="form-control user-input"
-                    type="text"
+                    type="password"
                     name="password"
                     value={loginData.password}
                     onChange={handleChange}

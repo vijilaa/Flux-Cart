@@ -85,7 +85,7 @@ function Log() {
             <div className="form-group">
               <label>Password</label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={loginData.password}
                 onChange={handleChange}

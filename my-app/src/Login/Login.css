@@ -32,9 +32,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(5px); 
+    filter: blur(5px); /* Apply blur here */
     z-index: 1;
-    opacity: 0.8; 
+    opacity: 0.8; /* Optional: Dim the background */
   }
   .user-login-content {
     position: relative;
@@ -93,9 +93,7 @@
 }
 
 
-.user-input::placeholder {
-    /* color: white; */
-}
+
 
 .user-login-checkbox {
     display: flex;
