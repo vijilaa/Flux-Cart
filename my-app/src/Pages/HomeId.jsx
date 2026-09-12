@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './HomeId.css';
 
 const HomeId = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState("");
+  const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:5000/Editproduct/${id}`)
@@ -18,22 +20,29 @@ const HomeId = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-   const userId = localStorage.getItem('UserId');
-   console.log(userId);
-   
-  if (!userId || !product._id){
-    console.log("not found");
-    
-  }
-     axios.post(`http://localhost:5000/Orderid/${userId}/${product._id}`)
-    .then((res) => {
-      alert("Product added to cart!");
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.error(err);
-      alert("Failed to add to cart");
-    });
+    const userId = localStorage.getItem('UserId');
+    if (!userId) {
+      alert("Please log in to add products to your cart.");
+      navigate('/log');
+      return;
+    }
+    if (!product._id) {
+      alert("Product details not loaded yet.");
+      return;
+    }
+
+    setIsAdding(true);
+    axios.post(`http://localhost:5000/Orderid/${userId}/${product._id}`)
+      .then((res) => {
+        setIsAdding(false);
+        alert("Product added to cart!");
+        navigate('/vieworder');
+      })
+      .catch((err) => {
+        setIsAdding(false);
+        console.error(err);
+        alert("Failed to add to cart. Maybe it is already in the cart.");
+      });
   };
 
   return (
@@ -56,10 +65,14 @@ const HomeId = () => {
         </div>
 
         <div className="product-buttons">
-         <Link to={'/vieworder'}>
-          <button className="btn-add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
-       </Link>
-         <Link to={`/Buynow/${product._id}`}> <button className="btn-buy-now">Buy Now</button></Link>
+          <button 
+            className="btn-add-to-cart" 
+            onClick={handleAddToCart}
+            disabled={isAdding}
+          >
+            {isAdding ? "Adding..." : "Add to Cart"}
+          </button>
+          <Link to={`/Buynow/${product._id}`}> <button className="btn-buy-now">Buy Now</button></Link>
         </div>
       </div>
     </div>

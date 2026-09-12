@@ -86,83 +86,127 @@ const BuyTotalProduct = () => {
     return (
         <div className="buy-now-container">
             <div className="checkout-card">
-                <h2>Checkout</h2>
-                <form onSubmit={handleSubmit} noValidate>
-                    {/* Shipping Info */}
-                    <input
-                        type="text"
-                        id="fullName"
-                        placeholder="Full Name"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                    />
-                    {errors.fullName && <p className="error-text">{errors.fullName}</p>}
+                <div className="checkout-header">
+                    <h2 className="header-title">Secure Checkout</h2>
+                    <p className="header-subtitle">Complete your purchase</p>
+                </div>
 
-                    <input
-                        type="text"
-                        id="address"
-                        placeholder="Address"
-                        value={formData.address}
-                        onChange={handleChange}
-                    />
-                    {errors.address && <p className="error-text">{errors.address}</p>}
+                <form className="checkout-form" onSubmit={handleSubmit} noValidate>
+                    <div className="form-section">
+                        <h4 className="section-title">Shipping Information</h4>
+                        
+                        <div className="form-group">
+                            <label htmlFor="fullName">Full Name</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                className="form-input"
+                                placeholder="John Doe"
+                                value={formData.fullName}
+                                onChange={handleChange}
+                            />
+                            {errors.fullName && <p className="error-text">{errors.fullName}</p>}
+                        </div>
 
-                    <input
-                        type="text"
-                        id="city"
-                        placeholder="City"
-                        value={formData.city}
-                        onChange={handleChange}
-                    />
-                    {errors.city && <p className="error-text">{errors.city}</p>}
+                        <div className="form-group">
+                            <label htmlFor="address">Shipping Address</label>
+                            <input
+                                type="text"
+                                id="address"
+                                className="form-input"
+                                placeholder="123 Main Street"
+                                value={formData.address}
+                                onChange={handleChange}
+                            />
+                            {errors.address && <p className="error-text">{errors.address}</p>}
+                        </div>
 
-                    <input
-                        type="text"
-                        id="zip"
-                        placeholder="ZIP Code"
-                        value={formData.zip}
-                        onChange={handleChange}
-                    />
-                    {errors.zip && <p className="error-text">{errors.zip}</p>}
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="city">City</label>
+                                <input
+                                    type="text"
+                                    id="city"
+                                    className="form-input"
+                                    placeholder="Anytown"
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                />
+                                {errors.city && <p className="error-text">{errors.city}</p>}
+                            </div>
 
-                    {/* Payment Info */}
-                    <input
-                        type="text"
-                        id="cardNumber"
-                        placeholder="Card Number"
-                        value={formData.cardNumber}
-                        onChange={handleChange}
-                        maxLength="19"
-                    />
-                    {errors.cardNumber && <p className="error-text">{errors.cardNumber}</p>}
+                            <div className="form-group">
+                                <label htmlFor="zip">ZIP Code</label>
+                                <input
+                                    type="text"
+                                    id="zip"
+                                    className="form-input"
+                                    placeholder="123456"
+                                    value={formData.zip}
+                                    onChange={handleChange}
+                                />
+                                {errors.zip && <p className="error-text">{errors.zip}</p>}
+                            </div>
+                        </div>
+                    </div>
 
-                    <input
-                        type="text"
-                        id="expiry"
-                        placeholder="MM/YY"
-                        value={formData.expiry}
-                        onChange={handleChange}
-                        maxLength="5"
-                    />
-                    {errors.expiry && <p className="error-text">{errors.expiry}</p>}
+                    <div className="form-section">
+                        <h4 className="section-title">Payment Details</h4>
+                        
+                        <div className="form-group">
+                            <label htmlFor="cardNumber">Card Number</label>
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                className="form-input"
+                                placeholder="**** **** **** ****"
+                                value={formData.cardNumber}
+                                onChange={handleChange}
+                                maxLength="19"
+                            />
+                            {errors.cardNumber && <p className="error-text">{errors.cardNumber}</p>}
+                        </div>
 
-                    <input
-                        type="text"
-                        id="cvv"
-                        placeholder="CVV"
-                        value={formData.cvv}
-                        onChange={handleChange}
-                        maxLength="4"
-                    />
-                    {errors.cvv && <p className="error-text">{errors.cvv}</p>}
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="expiry">Expiry Date</label>
+                                <input
+                                    type="text"
+                                    id="expiry"
+                                    className="form-input"
+                                    placeholder="MM/YY"
+                                    value={formData.expiry}
+                                    onChange={handleChange}
+                                    maxLength="5"
+                                />
+                                {errors.expiry && <p className="error-text">{errors.expiry}</p>}
+                            </div>
 
-                    {errors.productIds && <p className="error-text">{errors.productIds}</p>}
+                            <div className="form-group">
+                                <label htmlFor="cvv">CVV</label>
+                                <input
+                                    type="text"
+                                    id="cvv"
+                                    className="form-input"
+                                    placeholder="123"
+                                    value={formData.cvv}
+                                    onChange={handleChange}
+                                    maxLength="4"
+                                />
+                                {errors.cvv && <p className="error-text">{errors.cvv}</p>}
+                            </div>
+                        </div>
+                    </div>
 
-                    <button type="submit">Place Order</button>
+                    {errors.productIds && <p className="error-text text-center">{errors.productIds}</p>}
+
+                    <button type="submit" className="submit-btn">
+                        Place Order
+                    </button>
                 </form>
 
                 <div className="back-to-shop">
-                    <Link to="/">← Continue Shopping</Link>
+                    <Link to="/home">← Continue Shopping</Link>
                 </div>
             </div>
         </div>

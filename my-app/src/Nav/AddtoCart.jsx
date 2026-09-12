@@ -18,10 +18,9 @@ const AddtoCart = () => {
       return;
     }
 
-    axios.get("http://localhost:5000/viewallorder")
+    axios.get(`http://localhost:5000/userorders/${userId}`)
       .then(res => {
-        const userOrders = res.data.data.filter(order => order.UserId === userId);
-        setOrders(userOrders);
+        setOrders(res.data.data || []);
         setLoading(false);
       })
       .catch((error) => {
